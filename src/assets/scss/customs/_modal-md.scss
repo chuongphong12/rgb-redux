@@ -1,0 +1,34 @@
+
+.modal-dialog {
+
+    &.modal-xl {
+        width: calc(100% - 80px);
+        margin: 40px;
+        max-width: unset;
+    }
+}
+    
+
+.modal-content {
+    padding: 24px 24px;
+}
+
+.modal-header {
+}
+
+
+// .modal-serial-studio-number {
+// 	.modal-dialog-centered {
+// 		justify-content: center;
+// 	}
+
+// 	.modal-dialog .modal-content {
+// 		width: 560px;
+// 		padding: 40px 80px;
+// 	}
+
+// 	.modal-title {
+// 		font-size: 20px;
+// 		line-height: 32px;
+// 	}
+// }

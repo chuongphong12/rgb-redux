@@ -1,0 +1,182 @@
+@import '../_variables.scss';
+@import './_icon.scss';
+
+.sidebar {
+	margin: 0;
+	padding: 0;
+	/* position: absolute;
+	overflow: auto; */
+	z-index: 99;
+
+	&.sidebar-expanded {
+		width: 338px;
+
+		&.sidebar-expanded-help {
+			@include respond-between('md', 'xl') {
+				width: auto;
+				.card {
+					padding: 0;
+					margin-bottom: 0 !important;
+				}
+			}
+		}
+
+		.card {
+			padding: 32px 24px 180px 24px;
+			margin-bottom: 0 !important;
+		}
+	}
+}
+
+/* Sidebar links */
+.sidebar a {
+	color: $app-grey;
+	padding: 0 16.5px;
+	text-decoration: none;
+	height: inherit;
+	display: flex;
+	justify-content: space-between;
+	cursor: pointer;
+
+	& > * {
+		align-self: center;
+	}
+
+	i.rgbi {
+		vertical-align: middle;
+		margin-right: 6px;
+		margin-bottom: 2px;
+	}
+}
+
+/* Active/current link */
+.sidebar a.is-active {
+	background-color: $app-bg-gray;
+	color: $app-dark-blue;
+	@include activeIcon;
+	position: relative;
+
+	&:after {
+		content: '';
+		position: absolute;
+		width: 4px;
+		height: 100%;
+		border-radius: 0 16px 16px 0;
+		background: linear-gradient(102.25deg, #4877ca 0%, #4d57a2 100%);
+
+		left: 0;
+		top: 0;
+	}
+}
+
+.sidebar a.line {
+	background: $app-dark-blue;
+	width: 1px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.is-active) {
+	background-color: $app-bg-gray;
+	color: $app-dark-blue;
+	-webkit-transition: all 0.4s;
+	transition: all 0.4s;
+	@include activeIcon;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+	/* margin-left: 352px; */
+	padding: 1px 9px;
+}
+
+/* On screens that are less than 768px wide, make the sidebar into a topbar */
+@media screen and (max-width: 1200px) {
+	/* .sidebar {
+		width: 100%;
+		height: auto;
+		position: relative;
+	} */
+
+	/* Sidebar sizes when expanded and expanded */
+	.sidebar-expanded {
+		transition: ease 0.4s;
+	}
+	.sidebar-collapsed {
+		width: 40px;
+		transition: ease 0.4s;
+
+		.card {
+			width: inherit;
+			padding: 32px 0 180px 0 !important;
+			border-radius: 4px;
+			margin-bottom: 0 !important;
+		}
+
+		.nav_list a {
+			padding: 0;
+			justify-content: center;
+
+			span {
+				text-overflow: clip;
+			}
+
+			i.rgbi {
+				margin-right: 0 !important;
+			}
+		}
+	}
+
+	.dp {
+		visibility: visible;
+		opacity: 1;
+
+		animation-delay: 0.1s;
+	}
+
+	.dp-none {
+		visibility: hidden;
+		opacity: 0;
+	}
+
+	/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+	div.content {
+		/* margin-left: 44px; */
+		padding: 1px 4px;
+	}
+
+	div.content {
+		position: relative;
+
+		.container {
+			&.move_right {
+				position: absolute;
+				width: 638px;
+				opacity: 0.2;
+				transition: opacity 0.4s;
+			}
+		}
+	}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+	.sidebar a {
+		text-align: center;
+		float: none;
+	}
+}
+
+.close-sidebar-icon {
+	position: absolute;
+	right: -50px;
+	margin-bottom: 0 !important;
+	z-index: 99;
+
+	border-radius: 5px;
+	border-bottom-left-radius: 0 !important;
+	border-top-left-radius: 0 !important;
+	box-shadow: none !important;
+	cursor: pointer;
+}

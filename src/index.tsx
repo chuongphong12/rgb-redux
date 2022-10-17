@@ -5,7 +5,6 @@ import { store } from './app/store';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './index.css';
 import Home from './app/views/home/Home';
 import NotFound from './app/views/404';
 

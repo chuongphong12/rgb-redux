@@ -1,0 +1,39 @@
+.pagination {
+	.disabled > .page-link > .filter-arrow-icon,
+	.disabled > .page-link > .filter-arrow-icon {
+		filter: invert(88%) sepia(0%) saturate(0%) hue-rotate(285deg) brightness(104%) contrast(95%);
+	}
+	.page-item {
+		display: flex;
+		align-items: center;
+	}
+	.page-link {
+		border: none;
+		color: $app-placeholder-color;
+		font-weight: 500;
+		line-height: 2;
+		padding-top: 0;
+		padding-bottom: 0;
+		&:hover {
+			background-color: unset;
+		}
+		&:focus {
+			box-shadow: unset;
+		}
+		.bx-chevron-left,
+		.bx-chevron-right {
+			font-size: 32px;
+			color: $app-text-grey;
+			vertical-align: middle;
+		}
+		.filter-arrow-icon {
+			filter: invert(27%) sepia(2%) saturate(28%) hue-rotate(318deg) brightness(94%) contrast(78%);
+		}
+	}
+	.page-item.active .page-link {
+		font-weight: bold;
+		color: $app-dark-blue;
+		background-color: unset;
+		text-decoration: underline;
+	}
+}

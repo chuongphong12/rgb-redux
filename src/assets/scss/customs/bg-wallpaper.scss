@@ -1,0 +1,36 @@
+.bg-wallpaper {
+  .box-container {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+.progress {
+  border-radius: 500px;
+}
+
+.progress-sm {
+  height: 5px;
+}
+
+
+/* Progress height medium */
+.progress-md {
+  height: 8px;
+}
+
+
+// Progress height large
+.progress-lg {
+  height: 12px;
+}
+
+// Progress height Extra large
+.progress-xl {
+  height: 16px;
+}
+
+.progress-xxl {
+  height: 32px;
+  font-size: 14px;
+}

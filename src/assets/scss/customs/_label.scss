@@ -1,0 +1,121 @@
+.has-float-label {
+	width: 100%;
+	margin-bottom: 24px;
+	@include float-label-container;
+	@include float-label;
+
+	input {
+		font-size: $app-input-font-size;
+
+		@include float-label-scaled {
+			top: 14px;
+			padding: 0;
+			font-style: normal;
+		}
+
+
+		@include float-label-input;
+
+		&:focus {
+			outline: none;
+			border: $app-border;
+		}
+	}
+
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus,
+	input:-webkit-autofill:active {
+		-webkit-box-shadow: 0 0 0 30px white inset !important;
+	}
+
+
+	.invalid-feedback {
+		font-size: 12px;
+		line-height: 20px;
+		margin-top: 0;
+	}
+
+	.valid-feedback {
+		display: block;
+		font-size: 12px;
+		line-height: 20px;
+		color: $app-green;
+		margin-top: 4px;
+	}
+}
+
+.text-invalid {
+	@include text-color($app-red);
+	@include error-icon("../../images/icons/alert-circle.svg");
+}
+
+.text-valid {
+	@include text-color($app-green);
+	@include error-icon("../../images/icons/down-arrow.svg");
+}
+
+.text-default {
+	@include text-color($app-grey);
+	@include error-icon("../../images/icons/info.svg");
+}
+
+.text-green {
+	color: $app-green;
+}
+
+.text-red {
+	color: $app-red;
+}
+
+.text-grey {
+	color: $app-placeholder-color;
+}
+
+.addition_info {
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 20px;
+}
+
+.text-yellow {
+	color: $app-yellow;
+}
+.text-ellipsis {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+
+.bg-green {
+	background-color: $app-green;
+}
+
+.bg-red {
+	background-color: $app-red;
+}
+
+.bg-grey {
+	background-color: $app-placeholder-color;
+}
+
+
+.bg-yellow {
+	background-color: $app-yellow;
+}
+
+
+
+.bg-sd-green {
+	background-color: rgba(52, 199, 89, 0.1);
+}
+
+.bg-sd-red {
+	background-color: rgba(248, 163, 52, 0.1);
+}
+
+
+.bg-sd-yellow {
+	background-color: rgba(246, 76, 80, 0.1);
+}

@@ -1,0 +1,164 @@
+.rgbi {
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	line-height: 1;
+	text-rendering: auto;
+	display: inline-block;
+
+	text-transform: none;
+
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.rgbi-xs {
+	font-size: 1rem !important;
+}
+
+.rgbi-sm {
+	font-size: 1.55rem !important;
+}
+
+.rgbi-md {
+	font-size: 2.25rem !important;
+}
+
+.rgbi-lg {
+	font-size: 3rem !important;
+}
+
+.rgbi-fw {
+	font-size: 1.2857142857em;
+	line-height: 0.8em;
+
+	width: 1.2857142857em;
+	height: 0.8em;
+	margin-top: -0.2em !important;
+
+	vertical-align: middle;
+}
+
+.rgbi-pull-left {
+	float: left;
+
+	margin-right: 0.3em !important;
+}
+
+.rgbi-pull-right {
+	float: right;
+
+	margin-left: 0.3em !important;
+}
+
+.rgbi-user:before {
+	content: url('../../../assets/images/icons/sidebars/account.svg');
+}
+
+.rgbi-gallery:before {
+	content: url('../../../assets/images/icons/sidebars/image.svg');
+}
+
+.rgbi-compare-history:before {
+	content: url('../../../assets/images/icons/sidebars/color.svg');
+}
+
+.rgbi-hardware:before {
+	content: url('../../../assets/images/icons/sidebars/hardware.svg');
+}
+
+.rgbi-payment:before {
+	content: url('../../../assets/images/icons/sidebars/payment.svg');
+}
+
+.rgbi-logout:before {
+	content: url('../../../assets/images/icons/sidebars/sign-out.svg');
+}
+
+.rgbi-delete:before {
+	content: url('../../../assets/images/icons/sidebars/delete.svg');
+}
+
+.rgbi-right-arrow:before {
+	content: url('../../../assets/images/icons/sidebars/right-arrow.svg');
+}
+
+.rgbi-left-arrow:before {
+	content: url('../../../assets/images/icons/left-arrow.svg');
+}
+
+.rgbi-qr-scan:before {
+	content: url('../../../assets/images/icons/color-comparison/qr-icon.svg');
+}
+
+.rgbi-color-number:before {
+	content: url('../../../assets/images/icons/sidebars/color-number.svg');
+}
+
+.rgbi-bell:before {
+	content: url('../../../assets/images/icons/sidebars/bell.svg');
+}
+
+.rgbi-help:before {
+	content: url('../../../assets/images/icons/sidebars/help-circle.svg');
+}
+
+.rgbi-help-blue:before {
+	content: url('../../../assets/images/icons/sidebars/help-circle-active.svg');
+}
+
+.rgbi-compare-payment:before {
+	content: url('../../../assets/images/icons/compare-payment.svg');
+}
+
+.rgbi-upload-image:before {
+	content: url('../../../assets/images/icons/color-comparison/picture.svg');
+}
+
+.rgbi-picture:before {
+	content: url('../../../assets/images/icons/color-comparison/picture-grey.svg');
+}
+
+@mixin activeIcon {
+	.rgbi-user:before {
+		content: url('../../../assets/images/icons/sidebars/account-active.svg');
+	}
+
+	.rgbi-gallery:before {
+		content: url('../../../assets/images/icons/sidebars/image-active.svg');
+	}
+
+	.rgbi-compare-history:before {
+		content: url('../../../assets/images/icons/sidebars/color-active.svg');
+	}
+
+	.rgbi-hardware:before {
+		content: url('../../../assets/images/icons/sidebars/hardware-active.svg');
+	}
+
+	.rgbi-payment:before {
+		content: url('../../../assets/images/icons/sidebars/payment-active.svg');
+	}
+
+	.rgbi-logout:before {
+		content: url('../../../assets/images/icons/sidebars/sign-out.svg');
+	}
+
+	.rgbi-delete:before {
+		content: url('../../../assets/images/icons/sidebars/delete.svg');
+	}
+	.rgbi-right-arrow:before {
+		content: url('../../../assets/images/icons/sidebars/right-arrow-active.svg');
+	}
+	.rgbi-color-number:before {
+		content: url('../../../assets/images/icons/sidebars/color-number-active.svg');
+	}
+	.rgbi-bell:before {
+		content: url('../../../assets/images/icons/sidebars/bell-active.svg');
+	}
+
+	.rgbi-help:before {
+		content: url('../../../assets/images/icons/sidebars/help-circle-active.svg');
+	}
+}

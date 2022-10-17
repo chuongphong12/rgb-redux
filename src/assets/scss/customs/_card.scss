@@ -1,0 +1,54 @@
+//
+// _card.scss
+//
+
+.card {
+	margin-bottom: $grid-gutter-width;
+	box-shadow: $box-shadow;
+	border-radius: 15px;
+	border: 1px solid $app-bg-grey;
+}
+
+.card-help {
+	margin: 0 !important;
+	@include respond-between('xs', 'md') {
+		margin-bottom: unset;
+		box-shadow: none;
+		border-radius: unset;
+		border: unset;
+	}
+}
+
+.card-disabled {
+	background-color: #e4e4e4;
+	opacity: 0.4;
+	box-shadow: $box-shadow;
+	border-radius: 5px;
+}
+
+.card-drop {
+	color: $body-color;
+}
+
+.card-title {
+	font-size: 15px;
+	margin: 0 0 7px 0;
+	font-weight: $font-weight-semibold;
+}
+
+.card-title-desc {
+	color: $gray-600;
+	margin-bottom: 24px;
+}
+
+.container {
+	.card {
+		min-height: 785px;
+	}
+
+	.card-help {
+		@include respond-between('xs', 'md') {
+			min-height: unset;
+		}
+	}
+}

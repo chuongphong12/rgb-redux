@@ -1,0 +1,56 @@
+.footer {
+    &.ft-container {}
+}
+
+.ft-grid-top {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    .ft-rgb {
+        grid-area: ft-rgb;
+        margin-bottom: 32px;
+    }
+
+    .ft-ab-ser-sup {
+
+        display: grid;
+        grid-area: ft-ab-ser-sup;
+
+        .ft-ab-ser-sup-item {
+            h6 {
+                margin-bottom: 14px;
+            }
+
+            p {
+                padding-bottom: 10px;
+                color: $app-grey;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .ft-social {
+        grid-area: ft-social;
+
+        .ft-social-icon {
+            &:not(:last-child) {
+                margin-right: 30px;
+            }
+        }
+    }
+
+    .ft-sc-content {
+        grid-area: ft-sc-content;
+        text-align: justify;
+        text-justify: inter-word;
+        font-size: 14px;
+        line-height: 24px;
+        color: $app-grey;
+    }
+
+}
+
+
+.ft-grid-bottom {
+    display: grid;
+}

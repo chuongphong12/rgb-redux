@@ -1,0 +1,197 @@
+.btn {
+	padding: 0 12px;
+	border-radius: $app-input-radius;
+	height: $app-input-height;
+	font-size: $app-input-font-size;
+	line-height: $app-input-line-height;
+	width: 100%;
+
+	position: relative;
+
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	transform: translatey(0) scale3d(1, 1, 1);
+	transition: all 100ms !important;
+
+	&:active {
+		transform: translatey(4px) scale3d(0.98, 0.98, 0.98);
+		outline: none !important;
+	}
+
+	&:focus {
+		outline: none !important;
+		box-shadow: none;
+	}
+}
+
+.btn-width-auto {
+	width: auto;
+	padding: 0 16px;
+	min-width: 180px;
+
+	@include respond-between('xs', 'md') {
+		padding: 0 12px;
+		min-width: 144px;
+	}
+}
+
+.btn-alphabet {
+	height: auto;
+	margin: 0;
+	width: auto;
+	padding: 0;
+	border: 0;
+	vertical-align: unset;
+
+	&:hover {
+		/* do nothing */
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: none;
+	}
+
+	&:active {
+		transform: scale3d(0.9, 0.9, 0.9);
+	}
+}
+
+.btn-dark-blue {
+	background-color: $app-dark-blue;
+	color: $app-white-color;
+
+	&:hover {
+		background-color: $app-dark-blue;
+		color: $app-white-color;
+	}
+}
+
+.btn-light-text-dark {
+	background-color: #f2f2f2;
+	color: $app-text-grey;
+	border: $app-border;
+
+	&:hover {
+		background-color: $app-grey;
+		color: $app-white-color;
+	}
+}
+
+.btn-light-blue {
+	background-color: $app-light-blue-rgb;
+	color: $app-dark-blue;
+
+	&:hover {
+		/* background-color: $app-dark-blue; */
+		color: $app-dark-blue;
+		outline: 2px solid $app-dark-blue !important;
+	}
+}
+
+.btn-grey {
+	background-color: $app-grey;
+	color: $app-white-color;
+
+	&:hover {
+		background-color: $app-grey;
+		color: $app-white-color;
+	}
+}
+
+.btn-light-grey {
+	background-color: $app-border-color;
+	color: $app-white-color;
+
+	&:hover {
+		background-color: $app-border-color;
+		color: $app-white-color;
+	}
+}
+
+.btn-green {
+	background-color: $app-green;
+	color: $app-white-color;
+
+	&:hover {
+		background-color: $app-green;
+		color: $app-white-color;
+	}
+}
+
+.btn-red {
+	background-color: $app-red;
+	color: $app-white-color;
+
+	&:hover {
+		background-color: $app-red;
+		color: $app-white-color;
+	}
+}
+
+.btn-grey {
+	background-color: $app-grey;
+	color: $app-white-color;
+
+	&:hover {
+		background-color: $app-grey;
+		color: $app-white-color;
+	}
+}
+
+.btn-border-grey {
+	background-color: transparent;
+	color: black;
+	border: $app-border;
+}
+
+.icon-button {
+	position: relative;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
+	.icon {
+		&:hover {
+			color: $app-white-color;
+		}
+	}
+
+	span.content {
+		font-weight: 500;
+	}
+}
+
+.btn-close-modal {
+	z-index: 100;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	opacity: 0.3;
+	padding: 0;
+	border: none;
+	outline: none;
+	box-shadow: none;
+	background: none;
+	.bx-x {
+		font-size: 36px;
+		color: $app-text-grey;
+	}
+}
+
+.btn-close-modal:hover {
+	opacity: 1;
+}
+
+.bottom-btn {
+	display: flex;
+	justify-content: flex-end;
+
+	& > button:first-child {
+		margin-right: 24px;
+	}
+
+	& > button {
+		width: 180px;
+	}
+}

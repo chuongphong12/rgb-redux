@@ -1,0 +1,60 @@
+.color-cp-all-step {
+    margin: auto;
+
+    div {
+        padding: 8px 0 8px 16px;
+        height: auto;
+
+        .step-name {
+            font-size: 14px;
+            position: relative;
+            z-index: 151;
+        }
+
+        &.right {
+            border-top-left-radius: $app-input-radius;
+            border-bottom-left-radius: $app-input-radius;
+            &::after {
+                content: "";
+                border-top: 1px solid #ccc;
+                border-right: 1px solid #ccc;
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                right: 0;
+                top: -1px;
+                background: white;
+                z-index: 150;
+
+                -webkit-transform: translate(16px, 6px) rotate(45deg);
+                -moz-transform: translate(16px, 6px) rotate(45deg);
+                -ms-transform: translate(16px, 6px) rotate(45deg);
+                -o-transform: translate(16px, 6px) rotate(20deg);
+                transform: translate(16px, 6px) rotate(45deg);
+            }
+        }
+
+        &.left {
+            border-top-right-radius: $app-input-radius;
+            border-bottom-right-radius: $app-input-radius;
+        }
+
+        &.step-active {
+            background: linear-gradient(102.25deg, #4877ca 0%, #4d57a2 100%);
+            .step-name {
+                color: white;
+                font-weight: bold;
+            }
+            &::after {
+                background: #4d57a2;
+            }
+        }
+
+        &.step-success {
+            .step-name {
+                color: $app-grey;
+                font-weight: bold;
+            }
+        }
+    }
+}

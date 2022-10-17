@@ -1,0 +1,27 @@
+//(xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px)
+
+// Small devices (mobile phones, 0 ~ 768px)
+@include respond-between('xs', 'md') {
+	@import 'screen-sm';
+	@import '../../base-sm';
+	@import '../modal-sm';
+	@import '../../structure/topbar-sm';
+	@import '../../pages/color-comparison-sm';
+	@import '../btn-sm';
+	@import '../input-sm';
+	@import '../ng-select-sm';
+}
+
+// Medium devices (tablets, 768px and up)
+@include respond-between('md', 'xl') {
+	@import 'screen-md';
+	@import '../modal-md';
+	@import 'structure/topbar';
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@include respond-up('xl') {
+	@import 'screen-xl';
+	@import '../modal-xl';
+	@import 'structure/topbar';
+}

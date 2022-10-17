@@ -1,0 +1,16 @@
+.btn {
+	height: $app-input-height-sm;
+}
+
+.bottom-btn {
+	display: flex;
+	justify-content: center;
+
+	& > button:first-child {
+		margin-right: 24px;
+	}
+
+	& > button {
+		width: 159px;
+	}
+}

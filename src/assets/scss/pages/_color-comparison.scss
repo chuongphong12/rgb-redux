@@ -1,0 +1,100 @@
+.color-cp-all-step {
+	margin: auto;
+
+	div {
+		display: inline-block;
+		position: relative;
+		padding: 12px 32px;
+		height: 52px;
+		border: $app-border;
+		background: $app-white-color;
+		width: 25%;
+		text-align: center;
+
+		.step-name {
+			color: $app-placeholder-color;
+			font-weight: normal;
+			font-size: 16px;
+			text-decoration: none;
+
+			i.bx {
+				display: none;
+				font-weight: bold;
+			}
+		}
+
+		&.right {
+			border-top-left-radius: $app-input-radius;
+			border-bottom-left-radius: $app-input-radius;
+
+			&::after {
+				content: "";
+				border-top: 1px solid #ccc;
+				border-right: 1px solid #ccc;
+				width: 36px;
+				height: 36px;
+				position: absolute;
+				right: 0;
+				top: -1px;
+				background: white;
+				z-index: 150;
+
+				-webkit-transform: translate(19px, 8px) rotate(45deg);
+				-moz-transform: translate(19px, 8px) rotate(45deg);
+				-ms-transform: translate(19px, 8px) rotate(45deg);
+				-o-transform: translate(19px, 8px) rotate(20deg);
+				transform: translate(19px, 8px) rotate(45deg);
+			}
+		}
+
+		&.left {
+			border-top-right-radius: $app-input-radius;
+			border-bottom-right-radius: $app-input-radius;
+		}
+
+		&.step-active {
+			background: linear-gradient(102.25deg, #4877ca 0%, #4d57a2 100%);
+
+			.step-name {
+				color: white;
+				font-weight: bold;
+			}
+
+			&::after {
+				background: #4d57a2;
+			}
+		}
+
+		&.step-success {
+			.step-name {
+				color: $app-grey;
+				font-weight: bold;
+
+				i.bx {
+					color: $app-green;
+					display: inline-block;
+				}
+			}
+		}
+	}
+}
+
+.color-cp-content {
+	border-radius: 12px;
+	border: 1px solid $app-bg-grey;
+}
+
+.color-comparison {
+	&-layout {
+		text-align: center;
+	}
+
+	&-title {
+		font-weight: 500;
+	}
+
+	&-msg {
+		border-bottom: $app-border;
+		color: $app-text-grey;
+	}
+}

@@ -1,0 +1,14 @@
+.ng-select {
+
+    &.ng-select-single {
+      .ng-select-container {
+        height: $app-input-height-sm !important;
+      }
+    }
+  
+    &.ng-select-multiple {
+      .ng-select-container {
+        height: $app-input-height-sm !important;
+      }
+    }
+  }
