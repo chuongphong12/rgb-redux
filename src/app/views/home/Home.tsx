@@ -7,7 +7,7 @@ const Home = () => {
 	let elem = document.querySelector('.main-carousel');
 
 	const createCarousel = () => {
-		var carousel = new Flickity(elem!, {
+		let carousel = new Flickity(elem!, {
 			cellAlign: 'left',
 			contain: true,
 			groupCells: true,

@@ -1,10 +1,9 @@
 import React from 'react';
 import Footer from '../../../core/components/footer/Footer';
-import TopBar, { ESidebarName } from '../../../core/components/topbar/TopBar';
 import MainNav from '../../../core/components/main-nav/MainNav';
-import { Outlet } from 'react-router-dom';
+import TopBar, { ESidebarName } from '../../../core/components/topbar/TopBar';
 
-const LayoutMain = (props: any) => {
+const LayoutMainFullScreen = (props: any) => {
 
 	const openSidebar = (sidebarName: ESidebarName): void => {
 		Object.values(ESidebarName).forEach(elSidebarName => {
@@ -23,20 +22,17 @@ const LayoutMain = (props: any) => {
 	return (
 		<>
 			<div id='layout-wrapper'>
-
 				<div id='page-topbar' className='topbar'>
 					<div className='tb-container'>
 						<TopBar toggleSidebar={openSidebar} closeSidebar={closeSidebar} />
 					</div>
 				</div>
-
 				<div className='main-content'>
 					<MainNav />
 					<div className='mc-container'>
-						<Outlet/>
+						{props.children}
 					</div>
 				</div>
-
 				<div className='footer'>
 					<div className='ft-container'>
 						<Footer />
@@ -48,4 +44,4 @@ const LayoutMain = (props: any) => {
 		;
 };
 
-export default LayoutMain;
+export default LayoutMainFullScreen;
