@@ -1,11 +1,6 @@
 @import '../../../assets/scss/_variables.scss';
 
-:host {
-	--dot-color: #333;
 
-	.flickity-page-dots {
-		.dot {
-			background-color: var(--dot-color);
-		}
-	}
+.main-carousel {
+	height: 100vh;
 }

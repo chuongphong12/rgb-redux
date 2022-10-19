@@ -1,34 +1,42 @@
+//Fonts
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-/* @import '~animate.css/animate.min.css'; */
 
-@import './_variables.scss';
-@import './_base.scss';
+@import '~bootstrap/scss/bootstrap';
+@import '~animate.css/animate.min.css';
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
-/* @import 'structure/topbar'; */
-@import './structure/_right-sidebar.scss';
-@import './structure/_preloader.scss';
+@import 'variables';
+@import 'mixin';
 
-/* Pages */
-@import './pages/_demo.scss';
-@import './pages/_color-comparison.scss';
-@import './pages/_footer.scss';
+@import 'base';
 
-/* customs */
-@import './customs/_label.scss';
-@import './customs/_input.scss';
-@import './customs/_btn.scss';
-@import './customs/_ng-select.scss';
-@import './customs/_dropdown.scss';
-@import './customs/bg-wallpaper.scss';
-@import './customs/_card.scss';
-@import './customs/_modal.scss';
-@import './customs/_tabs.scss';
-@import './customs/_sidebar.scss';
-@import './customs/_icon.scss';
-@import './customs/_toast.scss';
-@import './customs/_gallery.scss';
-@import './customs/_pagination.scss';
-@import './customs/_carousel.scss';
+// Structure
+// @import 'structure/topbar';
+@import 'structure/right-sidebar';
+@import 'structure/preloader';
 
-/* breakpoint */
-@import './customs/responsive/_breakpoint.scss';
+// Pages
+@import 'pages/demo';
+@import 'pages/color-comparison';
+@import 'pages/footer';
+
+//customs
+@import 'customs/label';
+@import 'customs/input';
+@import 'customs/btn';
+@import 'customs/ng-select';
+@import 'customs/dropdown';
+@import 'customs/bg-wallpaper';
+@import 'customs/card';
+@import 'customs/modal';
+@import 'customs/tabs';
+@import 'customs/sidebar';
+@import 'customs/icon';
+@import 'customs/toast';
+@import 'customs/gallery';
+@import 'customs/pagination';
+@import 'customs/carousel';
+
+// breakpoint
+@import 'customs/responsive/breakpoint';

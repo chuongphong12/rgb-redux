@@ -87,7 +87,7 @@
 	letter-spacing: 0.125em;
 }
 
-@mixin cross($size: 20px, $color: currentColor, $thickness) {
+@mixin cross($size: 20px, $color: currentColor, $thickness: 2px) {
 	margin: 0;
 	padding: 0;
 	border: 0;

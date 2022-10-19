@@ -1,7 +1,15 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
 import { RouterLinkNav } from '../../constants/router-link.constant';
 import './TopBar.scss';
 import RightSideBar from '../right-sidebar/rightSideBar';
+import logo from '../../../../assets/images/logo.png';
+import notificationIcon from '../../../../assets/images/icons/notification-icon.svg';
+import hamburgerIcon from '../../../../assets/images/icons/menu-hamburger-icon.svg';
+import { Avatar } from '@mui/material';
+import DropdownMenu from 'react-bootstrap/DropdownMenu';
+import MainNav from '../main-nav/MainNav';
+
 
 export enum ESidebarName {
 	Hamburger = 'hamburger',
@@ -30,7 +38,7 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 
 	useEffect(() => {
 		setIsMobile(() => window.innerWidth < 768);
-	});
+	}, []);
 
 	const onClickItemSideBar = (sidebarName: ESidebarName) => {
 		// this.router.navigate(['/', 'my-page', sidebarName]);
@@ -48,49 +56,47 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 	};
 
 	const TemplateSignIn = () => {
+		const [activeNoti, setActiveNoti] = useState(false);
+		const [activeHamburger, setActiveHamburger] = useState(false);
+
 		if (user) {
 			return <>
 				<ul className='ul-nav-right-menu d-none d-md-inline-flex'>
 					<li className='li-nav-right-menu'>
-						<a className='dropdown-hide-arrow' href='javascript:;' id='dropdownNotification'>
-							<img src='assets/images/icons/notification-icon.svg' />
+						<a onClick={() => setActiveNoti(!activeNoti)} className='dropdown-hide-arrow' id='dropdownNotification'>
+							<img src={notificationIcon} alt={'icon'} />
 							<span className='notification-unread'>10</span>
 						</a>
-
-						<div aria-labelledby='dropdownNotification'>
+						<DropdownMenu show={activeNoti} aria-labelledby='dropdownNotification'>
 							<div className='dropdown-menu-arrow-up'></div>
 							<div className='dropdown-notification-menu'>
-
+								<NotificationMenu />
 							</div>
-						</div>
+						</DropdownMenu>
 					</li>
-
-					<li>
-						<a className='user-icon dropdown-hide-arrow' href='javascript:;' id='dropdownUser'>
-
-						</a>
-
-						<div aria-labelledby='dropdownHamburger'>
+					<li className='position-relative li-nav-right-menu'>
+						<Avatar onClick={() => setActiveHamburger(!activeHamburger)} className='dropdown-hide-arrow' alt='H2ND'
+										src='/static/images/avatar/1.jpg' />
+						<DropdownMenu aria-labelledby={'dropdownHamburger'} show={activeHamburger}>
 							<div className='dropdown-menu-hamburger'>
-
+								<HamburGerMenu />
 							</div>
-						</div>
-						;
+						</DropdownMenu>
 					</li>
 				</ul>
 
 				<ul className='ul-nav-right-menu d-inline-flex d-md-none'>
 					<li className='li-nav-right-menu'>
 						<a className='right-bar-toggle'>
-							<img src='assets/images/icons/notification-icon.svg' />
+							<img src={notificationIcon} alt={''} />
 							<span className='notification-unread'>10</span>
-						</a>;
+						</a>
 					</li>
 
 					<li className='position-relative li-nav-right-menu'>
 						<a className='right-bar-toggle'>
-							<img src='assets/images/icons/menu-hamburger-icon.svg' />
-						</a>;
+							<img src={hamburgerIcon} alt={''} />
+						</a>
 					</li>
 				</ul>
 			</>;
@@ -105,16 +111,9 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 		}
 	};
 
-	return (
-		<>
-			<header>
-				<div className='navbar-header'>
-					<img alt='' height='24' src='assets/images/logo.png' />
-					<TemplateSignIn />
-				</div>
-			</header>
-
-			<RightSideBar>
+	const HamburGerMenu = () => {
+		return (
+			<>
 				{isMobile ? <>
 						<div className='user'>
 							<p className='user__name'>Hudson</p>
@@ -190,9 +189,13 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 							<span> <i className='rgbi rgbi-logout'></i> Sign Out </span>
 						</a>
 					</nav>}
-			</RightSideBar>
+			</>
+		);
+	};
 
-			<RightSideBar>
+	const NotificationMenu = () => {
+		return (
+			<>
 				<div className='dropdown-notification-title justify-content-md-center'>
 					<span onClick={() => onClickCloseNotification(ESidebarName.Notification)}
 								className='remove-icon d-inline-block d-md-none'></span>
@@ -200,8 +203,32 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 					<span></span>
 				</div>
 				<ul className='dropdown-notification-items'>
-					<li>asdasdasasd</li>
+					<li>
+						<p className='notification-item-title'>New Noti</p>
+						<p className='notification-item-time'>12312313</p>
+					</li>
 				</ul>
+			</>
+		)
+			;
+	};
+
+	return (
+		<>
+			<header>
+				<div className='navbar-header'>
+					<img alt='' style={{ height: '24px' }} src={logo} />
+					<MainNav />
+					<TemplateSignIn />
+				</div>
+			</header>
+
+			<RightSideBar>
+				<HamburGerMenu />
+			</RightSideBar>
+
+			<RightSideBar>
+				<NotificationMenu />
 			</RightSideBar>
 		</>
 	)

@@ -1,13 +1,9 @@
-import React from 'react';
 import Footer from '../../../core/components/footer/Footer';
-import TopBar, { ESidebarName } from '../../../core/components/topbar/TopBar';
-import MainNav from '../../../core/components/main-nav/MainNav';
-import { Outlet } from 'react-router-dom';
+import TopBar,{ ESidebarName } from '../../../core/components/topbar/TopBar';
 
 const LayoutMain = (props: any) => {
-
 	const openSidebar = (sidebarName: ESidebarName): void => {
-		Object.values(ESidebarName).forEach(elSidebarName => {
+		Object.values(ESidebarName).forEach((elSidebarName) => {
 			if (elSidebarName !== sidebarName) {
 				document.body.classList.remove(`right-bar-open-${elSidebarName}`);
 			}
@@ -23,7 +19,6 @@ const LayoutMain = (props: any) => {
 	return (
 		<>
 			<div id='layout-wrapper'>
-
 				<div id='page-topbar' className='topbar'>
 					<div className='tb-container'>
 						<TopBar toggleSidebar={openSidebar} closeSidebar={closeSidebar} />
@@ -31,10 +26,7 @@ const LayoutMain = (props: any) => {
 				</div>
 
 				<div className='main-content'>
-					<MainNav />
-					<div className='mc-container'>
-						<Outlet/>
-					</div>
+					<div className='mc-container'>{props.children}</div>
 				</div>
 
 				<div className='footer'>
@@ -44,8 +36,7 @@ const LayoutMain = (props: any) => {
 				</div>
 			</div>
 		</>
-	)
-		;
+	);
 };
 
 export default LayoutMain;

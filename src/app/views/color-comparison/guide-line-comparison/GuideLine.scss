@@ -1,0 +1,62 @@
+@import '../../../../assets/scss/variables';
+
+@mixin step-icon($imgSrc) {
+  margin: 0 auto;
+  background-color: $app-bg-grey;
+  border-radius: 50%;
+  background-image: url($imgSrc);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.guideline {
+  &-content {
+    .steps {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .step-title {
+        font-weight: bold;
+        margin-top: 16px;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+
+      .step-text {
+        font-size: 12px;
+        line-height: 20px;
+        text-align: center;
+        color: $app-grey;
+      }
+
+      .compare-color {
+        @include step-icon('../../../../assets/images/icons/compare-color.svg');
+      }
+
+      .mode-selection {
+        @include step-icon('../../../../assets/images/icons/mode-selection.svg');
+      }
+
+      .payment {
+        @include step-icon('../../../../assets/images/icons/payment.svg');
+      }
+
+      .get-result {
+        @include step-icon('../../../../assets/images/icons/get-result.svg');
+      }
+    }
+  }
+
+  .btn {
+    width: 180px;
+    height: 48px;
+  }
+
+  .guidance-phrase {
+    .text-warn {
+      color: $app-yellow;
+    }
+  }
+}
