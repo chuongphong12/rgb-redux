@@ -36,11 +36,13 @@
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
+  "main": "src/main.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron-react": "concurrently \"BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
     "extends": [
@@ -62,6 +64,7 @@
   },
   "devDependencies": {
     "@types/jquery": "^3.5.14",
-    "@types/react-slick": "^0.23.10"
+    "@types/react-slick": "^0.23.10",
+    "electron": "^21.2.0"
   }
 }

@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
 import PerfectScrollbar from 'perfect-scrollbar';
-import { Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const RightSideBar = (props: any) => {
 	let ps: PerfectScrollbar;
@@ -8,10 +7,10 @@ const RightSideBar = (props: any) => {
 	useEffect(() => {
 		createScrollBar();
 
-		return (() => {
+		return () => {
 			ps.destroy();
-		})
-	}, []);
+		};
+	});
 
 	const createScrollBar = () => {
 		ps = new PerfectScrollbar('.right-bar');
@@ -20,7 +19,7 @@ const RightSideBar = (props: any) => {
 	return (
 		<>
 			<div className='right-bar' style={{ height: 100, width: 100 }}>
-				<Outlet />
+				{props.children}
 			</div>
 
 			<div className='rightbar-overlay'></div>

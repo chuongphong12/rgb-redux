@@ -1,0 +1,53 @@
+@import '../../../../assets/scss/variables';
+
+.my-account {
+  .col-lg-6 {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .no-gutters {
+    padding: 0;
+    margin: 0;
+  }
+
+  &__title {
+    margin-left: auto;
+    margin-right: auto;
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      color: $app-dark-blue;
+    }
+  }
+
+  &__form {
+    .section-label {
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 24px;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 400;
+      align-self: center;
+    }
+
+    .row {
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+    }
+
+    .form-group input[type=password] {
+      letter-spacing: normal !important;
+    }
+  }
+
+  .country {
+    .country-select {
+      padding: 0 !important;
+    }
+  }
+}

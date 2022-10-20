@@ -1,15 +1,17 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import Home from './app/views/home/Home';
+import { store } from './app/store';
 import NotFound from './app/views/404';
-import LayoutMainFullScreen from './app/views/layouts/layout-main-fullpage/LayoutMainFullScreen';
 import GuideLine from './app/views/color-comparison/guide-line-comparison/GuideLine';
+import Home from './app/views/home/Home';
+import LayoutMainFullScreen from './app/views/layouts/layout-main-fullpage/LayoutMainFullScreen';
 import LayoutMyPage from './app/views/layouts/layout-mypage/LayoutMyPage';
+import MyAccount from './app/views/my-page/my-account/MyAccount';
+import MyPage from './app/views/my-page/MyPage';
+import reportWebVitals from './reportWebVitals';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -37,6 +39,20 @@ const router = createBrowserRouter([
 								<GuideLine />
 							</LayoutMyPage>
 						),
+					},
+				],
+			},
+			{
+				path: 'my-page',
+				element: (
+					<LayoutMyPage>
+						<MyPage />
+					</LayoutMyPage>
+				),
+				children: [
+					{
+						path: 'my-account',
+						element: <MyAccount />,
 					},
 				],
 			},
