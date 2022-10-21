@@ -82,32 +82,30 @@ const MyPage = () => {
 						</div>
 
 						<ul className='nav_list'>
-							{__ESIDEBAR.map((menu) => {
+							{__ESIDEBAR.map((menu, index) => {
 								return (
-									<>
-										<li className='nav_list__item' key={menu.name}>
-											<NavLink
-												className={({ isActive }) => (isActive ? 'is-active' : undefined)}
-												to={onRouterLink(menu.link)}
-												onClick={() => toggle(true)}
-											>
-												{expand ? (
-													<>
-														<span className='animate__animated animate__fadeIn'>
-															<i className={'rgbi ' + menu.icon}></i> {menu.name}
-														</span>
-														<i className='rgbi rgbi-pull-right rgbi-right-arrow'></i>
-													</>
-												) : (
-													<i
-														className={
-															'rgbi animate__animated animate__fadeIn ' + menu.icon
-														}
-													></i>
-												)}
-											</NavLink>
-										</li>
-									</>
+									<li className='nav_list__item' key={index}>
+										<NavLink
+											className={({ isActive }) => (isActive ? 'is-active' : undefined)}
+											to={onRouterLink(menu.link)}
+											onClick={() => toggle(true)}
+										>
+											{expand ? (
+												<>
+													<span className='animate__animated animate__fadeIn'>
+														<i className={'rgbi ' + menu.icon}></i> {menu.name}
+													</span>
+													<i className='rgbi rgbi-pull-right rgbi-right-arrow'></i>
+												</>
+											) : (
+												<i
+													className={
+														'rgbi animate__animated animate__fadeIn ' + menu.icon
+													}
+												></i>
+											)}
+										</NavLink>
+									</li>
 								);
 							})}
 							<hr className='mt-3 mb-3' />

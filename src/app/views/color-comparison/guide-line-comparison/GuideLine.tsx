@@ -70,10 +70,10 @@ const GuideLine = (props: any) => {
 							colors.
 						</p>
 						<div className='guideline-content row'>
-							{steps.map((item) => {
+							{steps.map((item, index) => {
 								return (
 									<>
-										<div className='col-12 col-md-6 col-xl-3 steps'>
+										<div className='col-12 col-md-6 col-xl-3 steps' key={index}>
 											<div className={item.className + ' icon'}></div>
 											<p className='step-title'>{item.title}</p>
 											<p className='step-text'>{item.text}</p>
