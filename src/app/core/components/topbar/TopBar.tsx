@@ -1,12 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Avatar } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect,useState } from 'react';
 import DropdownMenu from 'react-bootstrap/DropdownMenu';
 import { useNavigate } from 'react-router-dom';
 import hamburgerIcon from '../../../../assets/images/icons/menu-hamburger-icon.svg';
 import notificationIcon from '../../../../assets/images/icons/notification-icon.svg';
 import logo from '../../../../assets/images/logo.png';
-import { RouterLinkNav } from '../../constants/router-link.constant';
 import MainNav from '../main-nav/MainNav';
 import RightSideBar from '../right-sidebar/rightSideBar';
 import './TopBar.scss';
@@ -32,8 +31,8 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 	const [isMobile, setIsMobile] = useState(false);
 	const navigate = useNavigate();
 
-	const SIDEBAR_NAME = ESidebarName;
-	const ROUTER_LINK_HOME = RouterLinkNav.Home;
+	// const SIDEBAR_NAME = ESidebarName;
+	// const ROUTER_LINK_HOME = RouterLinkNav.Home;
 
 	const user: boolean = true;
 

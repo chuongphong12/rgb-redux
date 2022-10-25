@@ -7,7 +7,7 @@ const rootReducer = combineReducers({
 
 export default rootReducer;
 
-// export const selectors = {
-// 	user: userSelector,
-// };
+export const selectors = {
+	user: userSelector,
+};
 

@@ -12,6 +12,7 @@ import LayoutMyPage from './app/views/layouts/layout-mypage/LayoutMyPage';
 import MyAccount from './app/views/my-page/my-account/MyAccount';
 import MyPage from './app/views/my-page/MyPage';
 import reportWebVitals from './reportWebVitals';
+import { AuthProvider } from './app/utils/AuthProvider';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -68,9 +69,11 @@ const router = createBrowserRouter([
 root.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<RouterProvider router={router} />
+			<AuthProvider>
+				<RouterProvider router={router} />
+			</AuthProvider>
 		</Provider>
-	</React.StrictMode>
+	</React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

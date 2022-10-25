@@ -1,16 +1,19 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Button, Grid, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { Autocomplete, Box, Button, Grid, TextField, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import './MyAccount.scss';
+import CountryRepository, { ICountry } from '../../../core/repository/countryRepository';
 
 const MyAccount = () => {
-	const schema = yup
-		.object({
-			password: yup.string().required(),
-			newPassword: yup.string().required(),
-		})
-		.required();
+	const [countries, setCountries] = useState<ICountry[] | undefined>([]);
+	const countryService = new CountryRepository();
+
+	const schema = yup.object().shape({
+		password: yup.string().required(),
+		newPassword: yup.string().required(),
+	});
 
 	const defaultValues = {
 		firstName: '',
@@ -27,7 +30,6 @@ const MyAccount = () => {
 		getValues,
 		handleSubmit,
 		control,
-		reset,
 		formState: { errors },
 	} = useForm({
 		mode: 'onChange',
@@ -35,6 +37,15 @@ const MyAccount = () => {
 		resolver: yupResolver(schema),
 	});
 	const onSubmit = (data: any) => console.log(data);
+
+	const fetchCountry = async () => {
+		const res = await countryService.getAllCountry();
+		setCountries(res);
+	};
+
+	useEffect(() => {
+		fetchCountry();
+	}, []);
 
 	return (
 		<>
@@ -59,9 +70,10 @@ const MyAccount = () => {
 									<Controller
 										control={control}
 										name='firstName'
-										render={({ field: { onChange, value } }) => (
+										render={({ field: { value } }) => (
 											<TextField
 												sx={{ width: '100%' }}
+												value={value}
 												size='small'
 												id='outlined-basic'
 												variant='outlined'
@@ -78,10 +90,11 @@ const MyAccount = () => {
 									<Controller
 										control={control}
 										name='lastName'
-										render={({ field: { onChange, value } }) => (
+										render={({ field: { value } }) => (
 											<TextField
 												sx={{ width: '100%' }}
 												size='small'
+												value={value}
 												id='outlined-basic'
 												variant='outlined'
 												inputProps={{ readOnly: true }}
@@ -97,12 +110,11 @@ const MyAccount = () => {
 									<Controller
 										control={control}
 										name='email'
-										render={({ field: { onChange, value } }) => (
+										render={({ field: { value } }) => (
 											<TextField
 												value={value}
 												sx={{ width: '100%' }}
 												size='small'
-												onChange={(e) => onChange(e.target.value)}
 												id='outlined-basic'
 												variant='outlined'
 											/>
@@ -124,9 +136,10 @@ const MyAccount = () => {
 									<Controller
 										control={control}
 										name='password'
-										render={({ field: { onChange, value } }) => (
+										render={({ field: { value } }) => (
 											<TextField
 												sx={{ width: '100%' }}
+												value={value}
 												size='small'
 												id='outlined-basic'
 												variant='outlined'
@@ -146,10 +159,11 @@ const MyAccount = () => {
 										render={({ field: { onChange, value } }) => (
 											<TextField
 												sx={{ width: '100%' }}
+												value={value}
 												size='small'
 												id='outlined-basic'
 												variant='outlined'
-												inputProps={{ readOnly: true }}
+												onChange={(e) => onChange(e.target.value)}
 											/>
 										)}
 									/>
@@ -183,25 +197,47 @@ const MyAccount = () => {
 							<hr />
 							<Grid container rowSpacing={5} direction={'row'}>
 								<Grid item xs={6}>
-									<label>Current Password</label>
+									<label>Country</label>
 								</Grid>
 								<Grid item xs={6}>
 									<Controller
 										control={control}
-										name='password'
+										name='countryCode'
 										render={({ field: { onChange, value } }) => (
-											<Select
-												labelId='demo-simple-select-standard-label'
-												id='demo-simple-select-standard'
-												label='Age'
-											>
-												<MenuItem value=''>
-													<em>None</em>
-												</MenuItem>
-												<MenuItem value={10}>Ten</MenuItem>
-												<MenuItem value={20}>Twenty</MenuItem>
-												<MenuItem value={30}>Thirty</MenuItem>
-											</Select>
+											<Autocomplete
+												id='country-select-demo'
+												sx={{ width: '100%' }}
+												options={countries!}
+												autoHighlight
+												getOptionLabel={(option) => option.name}
+												isOptionEqualToValue={(option, value) => option.code === value.code}
+												renderOption={(props, option) => (
+													<Box
+														component='li'
+														sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
+														{...props}
+													>
+														<img
+															loading='lazy'
+															width='20'
+															src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+															srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+															alt=''
+														/>
+														{option.name} ({option.code})
+													</Box>
+												)}
+												renderInput={(params) => (
+													<TextField
+														{...params}
+														size={'small'}
+														inputProps={{
+															...params.inputProps,
+															autoComplete: 'new-password', // disable autocomplete and autofill
+														}}
+													/>
+												)}
+											/>
 										)}
 									/>
 								</Grid>

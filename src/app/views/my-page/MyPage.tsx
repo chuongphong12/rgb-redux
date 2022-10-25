@@ -32,7 +32,6 @@ const MyPage = () => {
 	];
 	let expand: boolean = true;
 	let isTablet: boolean = false;
-	let isLargeScreen: boolean = false;
 
 	const toggle = (val: boolean) => {
 		expand = val;
@@ -44,15 +43,11 @@ const MyPage = () => {
 
 	const resizable = () => {
 		if (window.innerWidth >= 768 && window.innerWidth <= 1200) {
-			isLargeScreen = true;
 			expand = false;
 			isTablet = true;
 		} else if (window.innerWidth > 1200) {
-			isLargeScreen = true;
 			expand = true;
 			isTablet = false;
-		} else {
-			isLargeScreen = false;
 		}
 	};
 
@@ -98,11 +93,7 @@ const MyPage = () => {
 													<i className='rgbi rgbi-pull-right rgbi-right-arrow'></i>
 												</>
 											) : (
-												<i
-													className={
-														'rgbi animate__animated animate__fadeIn ' + menu.icon
-													}
-												></i>
+												<i className={'rgbi animate__animated animate__fadeIn ' + menu.icon}></i>
 											)}
 										</NavLink>
 									</li>
@@ -110,18 +101,14 @@ const MyPage = () => {
 							})}
 							<hr className='mt-3 mb-3' />
 							<li className='nav_list__item'>
-								<a className='mt-1'>
 									<span className='animate__animated animate__fadeIn dp'>
 										<i className='rgbi rgbi-logout'></i> Sign Out
 									</span>
-								</a>
 							</li>
 							<li className='nav_list__item'>
-								<a className='mb-1'>
 									<span className='animate__animated animate__fadeIn dp'>
 										<i className='rgbi rgbi-delete'></i> Delete My Account
 									</span>
-								</a>
 							</li>
 						</ul>
 					</div>

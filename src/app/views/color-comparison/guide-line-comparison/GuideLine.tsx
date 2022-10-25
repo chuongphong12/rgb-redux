@@ -37,69 +37,64 @@ const GuideLine = (props: any) => {
 	];
 
 	return (
-		<>
-			<div className='color-comparison'>
-				<h2 className='cl-dark-blue mb-md-4 mb-3 d-none d-md-block'>Color Comparison</h2>
-				<div className='color-cp-all-step mb-md-4 mb-3'>
-					<div className='right'>
-						<span className='step-name'>
-							<i className='bx bx-check'></i> 1 Step
-						</span>
-					</div>
-					<div className='right'>
-						<span className='step-name'>
-							<i className='bx bx-check'></i> 2 Step
-						</span>
-					</div>
-					<div className='right'>
-						<span className='step-name'>
-							<i className='bx bx-check'></i> 3 Step
-						</span>
-					</div>
-					<div className='left'>
-						<span className='step-name'>
-							<i className='bx bx-check'></i> 4 Step
-						</span>
-					</div>
+		<div className='color-comparison'>
+			<h2 className='cl-dark-blue mb-md-4 mb-3 d-none d-md-block'>Color Comparison</h2>
+			<div className='color-cp-all-step mb-md-4 mb-3'>
+				<div className='right'>
+					<span className='step-name'>
+						<i className='bx bx-check'></i> 1 Step
+					</span>
 				</div>
-				<div className='color-cp-content bg-white card card-content'>
-					<div className='guideline color-comparison-layout'>
-						<h4 className='color-comparison-title cl-basic-black'>How It works?</h4>
-						<p className='color-comparison-msg'>
-							Our AI system provides simple & easy way to figure out how similar both
-							colors.
-						</p>
-						<div className='guideline-content row'>
-							{steps.map((item, index) => {
-								return (
-									<>
-										<div className='col-12 col-md-6 col-xl-3 steps' key={index}>
-											<div className={item.className + ' icon'}></div>
-											<p className='step-title'>{item.title}</p>
-											<p className='step-text'>{item.text}</p>
-										</div>
-									</>
-								);
-							})}
-						</div>
-						<div className='btn-start text-center'>
-							<button className='btn btn-dark-blue' id='btn' type='button'>
-								Let’s Start!
-							</button>
-						</div>
-						<p className='guidance-phrase'>
-							<span className='text-warn'>Wait!</span>&nbsp;You do not have any hardware?
-							It’s fine!&nbsp;
-							<span className='guidance-msg'>
-								Please visit this
-								<a className='text-link'>link</a>
-								and you could proceed to purchase!
-							</span>
-						</p>
-					</div>
+				<div className='right'>
+					<span className='step-name'>
+						<i className='bx bx-check'></i> 2 Step
+					</span>
+				</div>
+				<div className='right'>
+					<span className='step-name'>
+						<i className='bx bx-check'></i> 3 Step
+					</span>
+				</div>
+				<div className='left'>
+					<span className='step-name'>
+						<i className='bx bx-check'></i> 4 Step
+					</span>
 				</div>
 			</div>
-		</>
+			<div className='color-cp-content bg-white card card-content'>
+				<div className='guideline color-comparison-layout'>
+					<h4 className='color-comparison-title cl-basic-black'>How It works?</h4>
+					<p className='color-comparison-msg'>
+						Our AI system provides simple & easy way to figure out how similar both colors.
+					</p>
+					<div className='guideline-content row'>
+						{steps.map((item, index) => {
+							return (
+								<div className='col-12 col-md-6 col-xl-3 steps' key={index}>
+									<div className={item.className + ' icon'}></div>
+									<p className='step-title'>{item.title}</p>
+									<p className='step-text'>{item.text}</p>
+								</div>
+							);
+						})}
+					</div>
+					<div className='btn-start text-center'>
+						<button className='btn btn-dark-blue' id='btn' type='button'>
+							Let’s Start!
+						</button>
+					</div>
+					<p className='guidance-phrase'>
+						<span className='text-warn'>Wait!</span>&nbsp;You do not have any hardware? It’s
+						fine!&nbsp;
+						<span className='guidance-msg'>
+							Please visit this
+							<a className='text-link'>link</a>
+							and you could proceed to purchase!
+						</span>
+					</p>
+				</div>
+			</div>
+		</div>
 	);
 };
 

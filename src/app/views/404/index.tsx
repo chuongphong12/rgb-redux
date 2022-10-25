@@ -1,17 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Typography } from '@mui/material';
+import { motion } from 'framer-motion';
 
 const NotFound = () => {
 	return (
-		<div className='err404'>
-			<div className='error mx-auto' data-text='404'>
-				404
+		<div className='flex flex-col flex-1 items-center justify-center p-16'>
+			<div className='max-w-512 text-center'>
+				<motion.div
+					initial={{ opacity: 0, scale: 0.6 }}
+					animate={{ opacity: 1, scale: 1, transition: { delay: 0.1 } }}
+				>
+					<Typography variant='h1' color='inherit' className='font-medium mb-16'>
+						404
+					</Typography>
+				</motion.div>
+
+				<motion.div
+					initial={{ opacity: 0, y: 40 }}
+					animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}
+				>
+					<Typography variant='h5' color='textSecondary' className='mb-16 font-normal'>
+						Sorry but we could not find the page you are looking for
+					</Typography>
+				</motion.div>
 			</div>
-			<p className='lead text-gray-800 mb-5'>Page Not Found</p>
-			<p className='text-gray-500 mb-0'>
-				It looks like you found a glitch in the matrix...
-			</p>
-			<Link to={'/'}> &larr; Back to Dashboard</Link>
 		</div>
 	);
 };

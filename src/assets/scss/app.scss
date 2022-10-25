@@ -3,8 +3,13 @@
 
 @import '~bootstrap/scss/bootstrap';
 @import '~animate.css/animate.min.css';
-@import "~slick-carousel/slick/slick.css";
-@import "~slick-carousel/slick/slick-theme.css";
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 @import 'variables';
 @import 'mixin';
@@ -12,7 +17,7 @@
 @import 'base';
 
 // Structure
-// @import 'structure/topbar';
+@import 'structure/topbar';
 @import 'structure/right-sidebar';
 @import 'structure/preloader';
 
