@@ -1,5 +1,5 @@
-import Footer from '../../../core/components/footer/Footer';
-import TopBar, { ESidebarName } from '../../../core/components/topbar/TopBar';
+import Footer from '../../../core/components/Footer/Footer';
+import TopBar, { ESidebarName } from '../../../core/components/Topbar/TopBar';
 
 const LayoutMyPage = (props: any) => {
 	const openSidebar = (sidebarName: ESidebarName): void => {

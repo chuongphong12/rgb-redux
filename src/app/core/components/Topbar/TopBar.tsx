@@ -1,14 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Avatar } from '@mui/material';
-import { useEffect,useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import DropdownMenu from 'react-bootstrap/DropdownMenu';
 import { useNavigate } from 'react-router-dom';
 import hamburgerIcon from '../../../../assets/images/icons/menu-hamburger-icon.svg';
 import notificationIcon from '../../../../assets/images/icons/notification-icon.svg';
 import logo from '../../../../assets/images/logo.png';
-import MainNav from '../main-nav/MainNav';
-import RightSideBar from '../right-sidebar/rightSideBar';
+import MainNav from '../MainNav/MainNav';
+import RightSideBar from '../RightSidebar/RightSideBar';
 import './TopBar.scss';
+import AuthContext from '../../../utils/context/AuthProvider';
+import AuthenModal from '../../modals/AuthenModal';
+import { ModeAuthenticateEnum } from '../../enums/app.enum';
 
 export enum ESidebarName {
 	Hamburger = 'hamburger',
@@ -28,17 +31,16 @@ export interface TopBarProps {
 }
 
 const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
+	const { user } = useContext(AuthContext);
 	const [isMobile, setIsMobile] = useState(false);
 	const navigate = useNavigate();
 
 	// const SIDEBAR_NAME = ESidebarName;
 	// const ROUTER_LINK_HOME = RouterLinkNav.Home;
 
-	const user: boolean = true;
-
 	useEffect(() => {
 		setIsMobile(() => window.innerWidth < 768);
-	}, []);
+	}, [window.innerWidth]);
 
 	const onClickItemSideBar = (sidebarName: ESidebarName) => {
 		navigate('/my-page/' + sidebarName);
@@ -58,8 +60,19 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 	const TemplateSignIn = () => {
 		const [activeNoti, setActiveNoti] = useState(false);
 		const [activeHamburger, setActiveHamburger] = useState(false);
+		const [open, setOpen] = useState(false);
+		const [mode, setMode] = useState<number>(ModeAuthenticateEnum.Login);
+		const handleOpen = () => setOpen(true);
+		const handleClose = () => setOpen(false);
 
-		if (user) {
+		const onOpenModalLogin = () => {
+			handleOpen();
+			setMode(ModeAuthenticateEnum.Login);
+		};
+
+		console.log(user);
+
+		if (Object.keys(user).length > 0) {
 			return (
 				<>
 					<ul className='ul-nav-right-menu d-none d-md-inline-flex'>
@@ -88,7 +101,7 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 							/>
 							<DropdownMenu aria-labelledby={'dropdownHamburger'} show={activeHamburger}>
 								<div className='dropdown-menu-hamburger'>
-									<HamburGerMenu />
+									<HamburgerMenu />
 								</div>
 							</DropdownMenu>
 						</li>
@@ -114,14 +127,15 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 			return (
 				<>
 					<div>
-						<button className='btn btn-dark-blue sign'>Sign in</button>
+						<button onClick={onOpenModalLogin} className='btn btn-dark-blue sign'>Sign in</button>
+						<AuthenModal open={open} onClose={handleClose} mode={mode} onSetOpen={setOpen} />
 					</div>
 				</>
 			);
 		}
 	};
 
-	const HamburGerMenu = () => {
+	const HamburgerMenu = () => {
 		return (
 			<>
 				{isMobile ? (
@@ -287,7 +301,7 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 			</header>
 
 			<RightSideBar>
-				<HamburGerMenu />
+				<HamburgerMenu />
 			</RightSideBar>
 
 			<RightSideBar>

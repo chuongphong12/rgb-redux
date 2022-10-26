@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { ESidebarName } from '../../core/components/topbar/TopBar';
+import { ESidebarName } from '../../core/components/Topbar/TopBar';
 import './MyPage.scss';
 
 interface SideBar {

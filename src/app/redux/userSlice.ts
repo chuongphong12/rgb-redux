@@ -30,6 +30,7 @@ const userSlice = createSlice({
 			state.status = 'loading';
 		}).addCase(login.fulfilled, (state, action) => {
 			state.user = action.payload;
+			state.status = 'idle';
 		}).addCase(getProfile.fulfilled, (state, action) => {
 			state.user = action.payload;
 		});

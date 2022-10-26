@@ -1,7 +1,7 @@
 import React from 'react';
-import Footer from '../../../core/components/footer/Footer';
-import MainNav from '../../../core/components/main-nav/MainNav';
-import TopBar, { ESidebarName } from '../../../core/components/topbar/TopBar';
+import Footer from '../../../core/components/Footer/Footer';
+import MainNav from '../../../core/components/MainNav/MainNav';
+import TopBar, { ESidebarName } from '../../../core/components/Topbar/TopBar';
 
 const LayoutMainFullScreen = (props: any) => {
 

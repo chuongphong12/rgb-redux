@@ -1,15 +1,9 @@
-//Fonts
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
 
 @import '~bootstrap/scss/bootstrap';
 @import '~animate.css/animate.min.css';
 @import '~slick-carousel/slick/slick.css';
 @import '~slick-carousel/slick/slick-theme.css';
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 
 @import 'variables';
 @import 'mixin';

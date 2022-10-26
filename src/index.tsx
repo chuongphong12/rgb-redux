@@ -12,7 +12,8 @@ import LayoutMyPage from './app/views/layouts/layout-mypage/LayoutMyPage';
 import MyAccount from './app/views/my-page/my-account/MyAccount';
 import MyPage from './app/views/my-page/MyPage';
 import reportWebVitals from './reportWebVitals';
-import { AuthProvider } from './app/utils/AuthProvider';
+import { AuthProvider } from './app/utils/context/AuthProvider';
+import { createTheme } from '@mui/material';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
