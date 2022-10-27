@@ -1,10 +1,10 @@
 import axios from 'axios';
-import Toastconfig from '../../views/toast';
 import { environment } from '../../../environments/environment';
+import Toastconfig from '../../views/toast';
 import { LoginCredentials, UserModel } from '../models/userModel';
 
 export class AuthRepository {
-	baseUrl: string = environment.baseUrl.backend;
+	baseUrl: string = environment.baseUrl.backend + '/api';
 
 	async login(loginForm: LoginCredentials): Promise<UserModel> {
 		try {
@@ -18,7 +18,7 @@ export class AuthRepository {
 			Toastconfig.error(error.response.data);
 			throw error;
 		}
-	};
+	}
 
 	async logout(): Promise<void> {
 		try {
@@ -27,7 +27,7 @@ export class AuthRepository {
 			Toastconfig.error(e.response.data);
 			throw e;
 		}
-	};
+	}
 
 	setLoginLocalStorage(token: string): void {
 		localStorage.setItem('token-rgb', JSON.stringify(token));

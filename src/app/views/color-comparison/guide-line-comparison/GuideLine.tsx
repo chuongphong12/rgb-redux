@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import './GuideLine.scss';
+import { Grid } from '@mui/material';
 
 interface StepCard {
 	id: string;
@@ -67,19 +68,19 @@ const GuideLine = (props: any) => {
 					<p className='color-comparison-msg'>
 						Our AI system provides simple & easy way to figure out how similar both colors.
 					</p>
-					<div className='guideline-content row'>
+					<Grid container className='guideline-content'>
 						{steps.map((item, index) => {
 							return (
-								<div className='col-12 col-md-6 col-xl-3 steps' key={index}>
+								<Grid item lg={3} md={6} xs={12} className='steps' key={index}>
 									<div className={item.className + ' icon'}></div>
 									<p className='step-title'>{item.title}</p>
 									<p className='step-text'>{item.text}</p>
-								</div>
+								</Grid>
 							);
 						})}
-					</div>
+					</Grid>
 					<div className='btn-start text-center'>
-						<button className='btn btn-dark-blue' id='btn' type='button'>
+						<button className='btn btn-dark-blue' id='btn'>
 							Let’s Start!
 						</button>
 					</div>
@@ -87,8 +88,9 @@ const GuideLine = (props: any) => {
 						<span className='text-warn'>Wait!</span>&nbsp;You do not have any hardware? It’s
 						fine!&nbsp;
 						<span className='guidance-msg'>
-							Please visit this
+							Please visit this{' '}
 							<a className='text-link'>link</a>
+							{' '}
 							and you could proceed to purchase!
 						</span>
 					</p>

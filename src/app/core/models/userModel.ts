@@ -1,4 +1,4 @@
-import yup from 'yup';
+import * as yup from 'yup';
 import { RegexHelper } from '../constants/regex.constant';
 
 export interface LoginCredentials {
@@ -18,8 +18,8 @@ export interface UserModel {
 }
 
 export const LoginYup = yup.object().shape({
-	userEmail: yup.string().required().email(),
-	userPassword: yup.string().required(),
+	email: yup.string().required().email(),
+	password: yup.string().required(),
 });
 
 export const SignUpYup = yup.object().shape({

@@ -21,7 +21,7 @@
 	transform: translate(100%, 0);
 
 	.right-bar-toggle {
-		background-color: lighten($dark, 7%);
+		background-color: lighten($gray-800, 7%);
 		height: 24px;
 		width: 24px;
 		line-height: 24px;
@@ -30,7 +30,7 @@
 		border-radius: 50%;
 
 		&:hover {
-			background-color: lighten($dark, 10%);
+			background-color: lighten($gray-800, 10%);
 		}
 	}
 }

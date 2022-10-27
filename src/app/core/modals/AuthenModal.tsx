@@ -1,4 +1,4 @@
-import { Box, Modal } from '@mui/material';
+import { Box, Fade, Modal } from '@mui/material';
 import React from 'react';
 import Login from '../components/Login/Login';
 import { ModeAuthenticateEnum } from '../enums/app.enum';
@@ -39,18 +39,20 @@ const AuthenModal = ({ open, onClose, mode = ModeAuthenticateEnum.Login, onSetOp
 	};
 
 	return (
-		<Modal open={open} onClose={onClose} closeAfterTransition className='modal-holder'>
-			<Box sx={style}>
-				<Box className='modal-header p-0'>
-					<button onClick={(event) => handleClickRemove(event)} className='btn-close-modal'>
-						<i className='bx bx-x'></i>
-					</button>
-				</Box>
+		<Modal open={open} onClose={onClose} closeAfterTransition>
+			<Fade in={open}>
+				<Box sx={style}>
+					<Box className='modal-header p-0'>
+						<button onClick={(event) => handleClickRemove(event)} className='btn-close-modal'>
+							<i className='bx bx-x'></i>
+						</button>
+					</Box>
 
-				<Box className='modal-body'>
-					{onModeSwitch(mode)}
+					<Box className='modal-body'>
+						{onModeSwitch(mode)}
+					</Box>
 				</Box>
-			</Box>
+			</Fade>
 		</Modal>
 	);
 };

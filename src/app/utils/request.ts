@@ -1,19 +1,20 @@
-import { environment } from '../../environments/environment';
 import axios, { AxiosRequestConfig } from 'axios';
-import { getAuthority } from './authority';
+import { environment } from '../../environments/environment';
 import Toastconfig from '../views/toast';
+import { getAuthority } from './authority';
 
 const instance = axios.create({
 	baseURL: environment.baseUrl.backend + '/',
 	timeout: 300000,
 	headers: {
 		'Content-Type': 'application/json',
+		'Access-Control-Allow-Origin': '*',
 	},
 });
 
 // Add a request interceptor
 instance.interceptors.request.use(
-	async function(config) {
+	async function (config) {
 		if (typeof window !== 'undefined') {
 			// client side
 			const authority = getAuthority();
@@ -25,15 +26,15 @@ instance.interceptors.request.use(
 		}
 		return config;
 	},
-	function(error) {
+	function (error) {
 		// Do something with request error
 		return Promise.reject(error);
-	},
+	}
 );
 
 // Add a response interceptor
 instance.interceptors.response.use(
-	async function(response) {
+	async function (response) {
 		console.log('axios interceptor 1');
 		if (typeof window !== 'undefined') {
 		} else {
@@ -41,12 +42,12 @@ instance.interceptors.response.use(
 		}
 		return response;
 	},
-	function(error) {
+	function (error) {
 		console.log('axios interceptor 2');
 		console.log(error);
 		if (typeof window !== 'undefined') {
 			if (error.response.status === 401 && !error.request.responseURL.includes('/user/logout')) {
-				Toastconfig.error('Unauthenticate');
+				Toastconfig.error('Unauthenticated');
 				console.log(error.response.status);
 
 				// await store.dispatch(logOutAndDeleteToken());
@@ -54,7 +55,7 @@ instance.interceptors.response.use(
 		}
 		// return response;
 		return { response: error.response, data: error.response.data };
-	},
+	}
 );
 
 export const request = (url: string, options: Partial<AxiosRequestConfig>) => {
@@ -64,7 +65,7 @@ export const request = (url: string, options: Partial<AxiosRequestConfig>) => {
 export const requestWithToken = (
 	url: string,
 	token: string,
-	options: Partial<AxiosRequestConfig>,
+	options: Partial<AxiosRequestConfig>
 ) => {
 	const headers = { ...options.headers };
 	headers['Authorization'] = `Bearer ${token}`;

@@ -50,18 +50,18 @@ $black: #000;
 $grays: ();
 
 $grays: map-merge(
-	(
-		'100': $gray-100,
-		'200': $gray-200,
-		'300': $gray-300,
-		'400': $gray-400,
-		'500': $gray-500,
-		'600': $gray-600,
-		'700': $gray-700,
-		'800': $gray-800,
-		'900': $gray-900,
-	),
-	$grays
+                (
+                        '100': $gray-100,
+                        '200': $gray-200,
+                        '300': $gray-300,
+                        '400': $gray-400,
+                        '500': $gray-500,
+                        '600': $gray-600,
+                        '700': $gray-700,
+                        '800': $gray-800,
+                        '900': $gray-900,
+                ),
+                $grays
 );
 
 /* Components
@@ -90,10 +90,13 @@ Font, line-height, and color for body text, headings, and more. */
 
 $font-family-sans-serif: 'Noto Sans KR', sans-serif;
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-	'Courier New', monospace;
+'Courier New', monospace;
 $font-family-base: $font-family-sans-serif;
 
 /* Font Weight */
 $font-weight-normal: 400;
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
+
+$blue: #007bff !default;
+$primary: $blue !default;

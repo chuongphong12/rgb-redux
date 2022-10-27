@@ -1,17 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Avatar } from '@mui/material';
-import { useContext, useEffect, useState } from 'react';
-import DropdownMenu from 'react-bootstrap/DropdownMenu';
+import { Avatar, Menu, MenuItem } from '@mui/material';
+import { memo, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import hamburgerIcon from '../../../../assets/images/icons/menu-hamburger-icon.svg';
 import notificationIcon from '../../../../assets/images/icons/notification-icon.svg';
 import logo from '../../../../assets/images/logo.png';
+import AuthContext from '../../../utils/context/AuthProvider';
+import { ModeAuthenticateEnum } from '../../enums/app.enum';
+import AuthenModal from '../../modals/AuthenModal';
 import MainNav from '../MainNav/MainNav';
 import RightSideBar from '../RightSidebar/RightSideBar';
 import './TopBar.scss';
-import AuthContext from '../../../utils/context/AuthProvider';
-import AuthenModal from '../../modals/AuthenModal';
-import { ModeAuthenticateEnum } from '../../enums/app.enum';
 
 export enum ESidebarName {
 	Hamburger = 'hamburger',
@@ -60,6 +59,17 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 	const TemplateSignIn = () => {
 		const [activeNoti, setActiveNoti] = useState(false);
 		const [activeHamburger, setActiveHamburger] = useState(false);
+
+		const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+		const openDropdown = Boolean(anchorEl);
+		const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
+			setAnchorEl(event.currentTarget);
+		};
+
+		const handleCloseDropdown = () => {
+			setAnchorEl(null);
+		};
+
 		const [open, setOpen] = useState(false);
 		const [mode, setMode] = useState<number>(ModeAuthenticateEnum.Login);
 		const handleOpen = () => setOpen(true);
@@ -69,8 +79,6 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 			handleOpen();
 			setMode(ModeAuthenticateEnum.Login);
 		};
-
-		console.log(user);
 
 		if (Object.keys(user).length > 0) {
 			return (
@@ -85,12 +93,12 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 								<img src={notificationIcon} alt={'icon'} />
 								<span className='notification-unread'>10</span>
 							</a>
-							<DropdownMenu show={activeNoti} aria-labelledby='dropdownNotification'>
-								<div className='dropdown-menu-arrow-up'></div>
-								<div className='dropdown-notification-menu'>
-									<NotificationMenu />
-								</div>
-							</DropdownMenu>
+							{/*<Menu show={activeNoti} aria-labelledby='dropdownNotification'>*/}
+							{/*	<div className='dropdown-menu-arrow-up'></div>*/}
+							{/*	<div className='dropdown-notification-menu'>*/}
+							{/*		<NotificationMenu />*/}
+							{/*	</div>*/}
+							{/*</Menu>*/}
 						</li>
 						<li className='position-relative li-nav-right-menu'>
 							<Avatar
@@ -99,19 +107,55 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 								alt='H2ND'
 								src='/static/images/avatar/1.jpg'
 							/>
-							<DropdownMenu aria-labelledby={'dropdownHamburger'} show={activeHamburger}>
-								<div className='dropdown-menu-hamburger'>
-									<HamburgerMenu />
-								</div>
-							</DropdownMenu>
+							<Menu
+								anchorEl={anchorEl}
+								id='account-menu'
+								open={open}
+								onClose={handleClose}
+								onClick={handleClose}
+								PaperProps={{
+									elevation: 0,
+									sx: {
+										overflow: 'visible',
+										filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+										mt: 1.5,
+										'& .MuiAvatar-root': {
+											width: 32,
+											height: 32,
+											ml: -0.5,
+											mr: 1,
+										},
+										'&:before': {
+											content: '""',
+											display: 'block',
+											position: 'absolute',
+											top: 0,
+											right: 14,
+											width: 10,
+											height: 10,
+											bgcolor: 'background.paper',
+											transform: 'translateY(-50%) rotate(45deg)',
+											zIndex: 0,
+										},
+									},
+								}}
+								transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+								anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+							>
+								<MenuItem>
+									<div className='dropdown-menu-hamburger'>
+										<HamburgerMenu />
+									</div>
+								</MenuItem>
+							</Menu>
 						</li>
 					</ul>
 
-					<ul className='ul-nav-right-menu d-inline-flex d-md-none'>
+					<ul className='ul-nav-right-menu inline-flex md:hidden'>
 						<li className='li-nav-right-menu'>
 							<a className='right-bar-toggle'>
 								<img src={notificationIcon} alt={''} />
-								<span className='notification-unread'>10</span>
+								<span className='notification-unread'>8</span>
 							</a>
 						</li>
 
@@ -127,7 +171,9 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 			return (
 				<>
 					<div>
-						<button onClick={onOpenModalLogin} className='btn btn-dark-blue sign'>Sign in</button>
+						<button onClick={onOpenModalLogin} className='btn btn-dark-blue sign'>
+							Sign in
+						</button>
 						<AuthenModal open={open} onClose={handleClose} mode={mode} onSetOpen={setOpen} />
 					</div>
 				</>
@@ -311,4 +357,4 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 	);
 };
 
-export default TopBar;
+export default memo(TopBar);

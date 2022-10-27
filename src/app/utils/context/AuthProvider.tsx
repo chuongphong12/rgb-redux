@@ -1,10 +1,10 @@
-import { createContext, useEffect } from 'react';
-import { getProfile, userSelector } from '../../redux/userSlice';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { createContext, useCallback, useEffect } from 'react';
 import { UserModel } from '../../core/models/userModel';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getProfile, userSelector } from '../../redux/userSlice';
 
 interface UserContextProps {
-	user: UserModel,
+	user: UserModel;
 }
 
 interface ChildProps {
@@ -16,25 +16,20 @@ const AuthContext = createContext<UserContextProps>({} as UserContextProps);
 export const AuthProvider = ({ children }: ChildProps) => {
 	const dispatch = useAppDispatch();
 	const user = useAppSelector(userSelector);
+	const token = localStorage.getItem('token-rgb');
 
-	const fetchCurrentUserProfile = () => {
-		const token = localStorage.getItem('token-rgb');
+	const fetchCurrentUserProfile = useCallback(() => {
 		if (!token) {
 			return;
 		}
 		dispatch(getProfile());
-	};
+	}, [token]);
 
 	useEffect(() => {
 		fetchCurrentUserProfile();
 	}, []);
 
-
-	return (
-		<AuthContext.Provider value={{ user }}>
-			{children}
-		</AuthContext.Provider>
-	);
+	return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
 };
 
 export default AuthContext;
