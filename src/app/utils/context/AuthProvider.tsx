@@ -23,11 +23,11 @@ export const AuthProvider = ({ children }: ChildProps) => {
 			return;
 		}
 		dispatch(getProfile());
-	}, [token]);
+	}, [dispatch, token]);
 
 	useEffect(() => {
 		fetchCurrentUserProfile();
-	}, []);
+	}, [fetchCurrentUserProfile]);
 
 	return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
 };

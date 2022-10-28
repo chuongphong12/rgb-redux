@@ -1,12 +1,9 @@
-import React from 'react';
 import Footer from '../../../core/components/Footer/Footer';
-import MainNav from '../../../core/components/MainNav/MainNav';
 import TopBar, { ESidebarName } from '../../../core/components/Topbar/TopBar';
 
 const LayoutMainFullScreen = (props: any) => {
-
 	const openSidebar = (sidebarName: ESidebarName): void => {
-		Object.values(ESidebarName).forEach(elSidebarName => {
+		Object.values(ESidebarName).forEach((elSidebarName) => {
 			if (elSidebarName !== sidebarName) {
 				document.body.classList.remove(`right-bar-open-${elSidebarName}`);
 			}
@@ -28,10 +25,8 @@ const LayoutMainFullScreen = (props: any) => {
 					</div>
 				</div>
 				<div className='main-content'>
-					<MainNav />
-					<div className='mc-container'>
-						{props.children}
-					</div>
+					{/* <MainNav /> */}
+					<div className='mc-container'>{props.children}</div>
 				</div>
 				<div className='footer'>
 					<div className='ft-container'>
@@ -40,8 +35,7 @@ const LayoutMainFullScreen = (props: any) => {
 				</div>
 			</div>
 		</>
-	)
-		;
+	);
 };
 
 export default LayoutMainFullScreen;

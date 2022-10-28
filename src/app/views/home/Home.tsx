@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
-import Slide1 from './Slide1/Slide1';
-import './Home.scss';
 import Carousel from 'react-slick';
+import './Home.scss';
+import Slide1 from './Slide1/Slide1';
 
 const Home = () => {
 	const options = {
@@ -14,10 +13,6 @@ const Home = () => {
 		useCSS: true,
 		arrows: false,
 	};
-
-	useEffect(() => {
-
-	});
 
 	return (
 		<Carousel {...options} className='main-carousel'>

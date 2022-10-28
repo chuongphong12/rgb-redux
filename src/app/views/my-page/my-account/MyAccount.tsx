@@ -1,12 +1,15 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Autocomplete, Box, Button, Grid, TextField, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import './MyAccount.scss';
+import { UserModel } from '../../../core/models/userModel';
 import CountryRepository, { ICountry } from '../../../core/repository/countryRepository';
+import AuthContext from '../../../utils/context/AuthProvider';
+import './MyAccount.scss';
 
 const MyAccount = () => {
+	const { user } = useContext(AuthContext);
 	const [countries, setCountries] = useState<ICountry[] | undefined>([]);
 	const countryService = new CountryRepository();
 
@@ -15,7 +18,7 @@ const MyAccount = () => {
 		newPassword: yup.string().required(),
 	});
 
-	const defaultValues = {
+	let initialValues = {
 		firstName: '',
 		lastName: '',
 		email: '',
@@ -30,10 +33,11 @@ const MyAccount = () => {
 		getValues,
 		handleSubmit,
 		control,
-		formState: { errors },
+		reset,
+		formState: { errors, defaultValues },
 	} = useForm({
 		mode: 'onChange',
-		defaultValues,
+		defaultValues: initialValues,
 		resolver: yupResolver(schema),
 	});
 	const onSubmit = (data: any) => console.log(data);
@@ -43,9 +47,24 @@ const MyAccount = () => {
 		setCountries(res);
 	};
 
+	const fetchCurrentUserToForm = (user: UserModel) => {
+		if (!user) {
+			return;
+		}
+		reset({
+			email: user.email,
+			firstName: user.first_name,
+			lastName: user.last_name,
+			companyName: user.company_name,
+			countryCode: user.country_code,
+		});
+		console.log(defaultValues);
+	};
+
 	useEffect(() => {
 		fetchCountry();
-	}, []);
+		fetchCurrentUserToForm(user);
+	}, [user]);
 
 	return (
 		<>
@@ -62,7 +81,7 @@ const MyAccount = () => {
 								Account Information
 							</Typography>
 							<hr />
-							<Grid container rowSpacing={5} direction={'row'}>
+							<Grid container rowSpacing={5} direction={'row'} className='mt-3'>
 								<Grid item xs={6}>
 									<label>First Name</label>
 								</Grid>
@@ -128,7 +147,7 @@ const MyAccount = () => {
 								Change password
 							</Typography>
 							<hr />
-							<Grid container rowSpacing={5} direction={'row'}>
+							<Grid container rowSpacing={5} direction={'row'} className='mt-3'>
 								<Grid item xs={6}>
 									<label>Current Password</label>
 								</Grid>
@@ -195,7 +214,7 @@ const MyAccount = () => {
 								Country
 							</Typography>
 							<hr />
-							<Grid container rowSpacing={5} direction={'row'}>
+							<Grid container rowSpacing={5} direction={'row'} className='mt-3'>
 								<Grid item xs={6}>
 									<label>Country</label>
 								</Grid>
@@ -205,12 +224,12 @@ const MyAccount = () => {
 										name='countryCode'
 										render={({ field: { onChange, value } }) => (
 											<Autocomplete
-												id='country-select-demo'
+												id='country-select'
 												sx={{ width: '100%' }}
 												options={countries!}
 												autoHighlight
+												isOptionEqualToValue={(option) => option.name !== value}
 												getOptionLabel={(option) => option.name}
-												isOptionEqualToValue={(option, value) => option.code === value.code}
 												renderOption={(props, option) => (
 													<Box
 														component='li'
@@ -237,6 +256,35 @@ const MyAccount = () => {
 														}}
 													/>
 												)}
+											/>
+										)}
+									/>
+								</Grid>
+							</Grid>
+						</Box>
+
+						<Box className='company'>
+							<Typography variant='body1' className='section-label'>
+								Company
+							</Typography>
+							<hr />
+							<Grid container className='mb-4'>
+								<Grid item xs={6}>
+									<label>Company</label>
+								</Grid>
+
+								<Grid item xs={6}>
+									<Controller
+										control={control}
+										name='companyName'
+										render={({ field: { onChange, value } }) => (
+											<TextField
+												value={value}
+												sx={{ width: '100%' }}
+												size='small'
+												onChange={(e) => onChange(e.target.value)}
+												id='outlined-basic'
+												variant='outlined'
 											/>
 										)}
 									/>
