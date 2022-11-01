@@ -49,7 +49,7 @@ instance.interceptors.response.use(
 			if (error.response.status === 401 && !error.request.responseURL.includes('/user/logout')) {
 				Toastconfig.error('Unauthenticated');
 				console.log(error.response.status);
-
+				localStorage.removeItem('token-rgb');
 				// await store.dispatch(logOutAndDeleteToken());
 			}
 		}

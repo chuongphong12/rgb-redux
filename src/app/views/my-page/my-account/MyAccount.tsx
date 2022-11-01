@@ -1,4 +1,3 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Autocomplete, Box, Button, Grid, TextField, Typography } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -12,6 +11,7 @@ const MyAccount = () => {
 	const { user } = useContext(AuthContext);
 	const [countries, setCountries] = useState<ICountry[] | undefined>([]);
 	const countryService = new CountryRepository();
+	let currentCountry: ICountry | undefined;
 
 	const schema = yup.object().shape({
 		password: yup.string().required(),
@@ -30,7 +30,7 @@ const MyAccount = () => {
 	};
 
 	const {
-		getValues,
+		setValue,
 		handleSubmit,
 		control,
 		reset,
@@ -38,13 +38,16 @@ const MyAccount = () => {
 	} = useForm({
 		mode: 'onChange',
 		defaultValues: initialValues,
-		resolver: yupResolver(schema),
+		// resolver: yupResolver(schema),
 	});
 	const onSubmit = (data: any) => console.log(data);
 
 	const fetchCountry = async () => {
 		const res = await countryService.getAllCountry();
 		setCountries(res);
+		if (countries !== undefined) {
+			currentCountry = countries?.find((ele) => (ele.code = user.country_code));
+		}
 	};
 
 	const fetchCurrentUserToForm = (user: UserModel) => {
@@ -58,7 +61,6 @@ const MyAccount = () => {
 			companyName: user.company_name,
 			countryCode: user.country_code,
 		});
-		console.log(defaultValues);
 	};
 
 	useEffect(() => {
@@ -228,8 +230,10 @@ const MyAccount = () => {
 												sx={{ width: '100%' }}
 												options={countries!}
 												autoHighlight
-												isOptionEqualToValue={(option) => option.name !== value}
+												isOptionEqualToValue={(option) => option.code === value}
 												getOptionLabel={(option) => option.name}
+												value={currentCountry}
+												onChange={(e, value) => onChange(value?.code)}
 												renderOption={(props, option) => (
 													<Box
 														component='li'
@@ -250,6 +254,7 @@ const MyAccount = () => {
 													<TextField
 														{...params}
 														size={'small'}
+														variant={'outlined'}
 														inputProps={{
 															...params.inputProps,
 															autoComplete: 'new-password', // disable autocomplete and autofill
@@ -268,7 +273,7 @@ const MyAccount = () => {
 								Company
 							</Typography>
 							<hr />
-							<Grid container className='mb-4'>
+							<Grid container rowSpacing={5} className='mb-4 mt-3'>
 								<Grid item xs={6}>
 									<label>Company</label>
 								</Grid>

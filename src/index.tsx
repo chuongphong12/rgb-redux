@@ -1,9 +1,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import App from './App';
 import { store } from './app/store';
+import { AuthProvider } from './app/utils/context/AuthProvider';
 import NotFound from './app/views/404';
 import GuideLine from './app/views/color-comparison/guide-line-comparison/GuideLine';
 import Home from './app/views/home/Home';
@@ -12,8 +13,6 @@ import LayoutMyPage from './app/views/layouts/layout-mypage/LayoutMyPage';
 import MyAccount from './app/views/my-page/my-account/MyAccount';
 import MyPage from './app/views/my-page/MyPage';
 import reportWebVitals from './reportWebVitals';
-import { AuthProvider } from './app/utils/context/AuthProvider';
-import { createTheme } from '@mui/material';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -71,10 +70,10 @@ root.render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<AuthProvider>
-				<RouterProvider router={router} />
+				<RouterProvider router={router} fallbackElement={<NotFound />} />
 			</AuthProvider>
 		</Provider>
-	</React.StrictMode>,
+	</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

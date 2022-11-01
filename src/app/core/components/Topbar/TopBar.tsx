@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Avatar, IconButton, Menu } from '@mui/material';
+import { Avatar, Badge, Box, IconButton, Menu, Typography } from '@mui/material';
 import { memo, useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import hamburgerIcon from '../../../../assets/images/icons/menu-hamburger-icon.svg';
 import notificationIcon from '../../../../assets/images/icons/notification-icon.svg';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import logo from '../../../../assets/images/logo.png';
 import AuthContext from '../../../utils/context/AuthProvider';
 import { ModeAuthenticateEnum } from '../../enums/app.enum';
@@ -88,7 +89,7 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 			setMode(ModeAuthenticateEnum.Login);
 		};
 
-		if (Object.keys(user).length > 0) {
+		if (user && Object.keys(user).length > 0) {
 			return (
 				<>
 					<ul className='ul-nav-right-menu d-none d-md-inline-flex'>
@@ -101,8 +102,11 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 								aria-haspopup='true'
 								aria-expanded={openNotificationDropdown ? 'true' : undefined}
 							>
-								<img src={notificationIcon} alt={'icon'} />
-								<span className='notification-unread'>10</span>
+								<Badge badgeContent={10} color='primary'>
+									<NotificationsIcon color='action' />
+								</Badge>
+								{/* <img src={notificationIcon} alt={'icon'} />
+								<span className='notification-unread'>10</span> */}
 							</IconButton>
 							<Menu
 								anchorEl={notificationAnchorEl}
@@ -222,14 +226,12 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 			);
 		} else {
 			return (
-				<>
-					<div>
-						<button onClick={onOpenModalLogin} className='btn btn-dark-blue sign'>
-							Sign in
-						</button>
-						<AuthenModal open={open} onClose={handleClose} mode={mode} onSetOpen={setOpen} />
-					</div>
-				</>
+				<Box>
+					<button onClick={onOpenModalLogin} className='btn btn-dark-blue sign'>
+						Sign in
+					</button>
+					<AuthenModal open={open} onClose={handleClose} mode={mode} onSetOpen={setOpen} />
+				</Box>
 			);
 		}
 	};
@@ -239,13 +241,17 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 			<>
 				{isMobile ? (
 					<>
-						<div className='user'>
-							<p className='user__name'>Hudson</p>
-							<div className='user__type'>
-								<p className='email'>bm.hcmc.hudson@gmail.com</p>
-								<div className='type'>Trial</div>
-							</div>
-						</div>
+						<Box className='user'>
+							<Typography variant='body1' className='user__name'>
+								Hudson
+							</Typography>
+							<Box className='user__type'>
+								<Typography variant='body1' className='email'>
+									bm.hcmc.hudson@gmail.com
+								</Typography>
+								<Box className={(user.trial ? 'trial' : 'non-trial') + 'type'}>Trial</Box>
+							</Box>
+						</Box>
 						<nav className='dropdown-menu-nav'>
 							<a onClick={() => onClickItemSideBar(ESidebarName.MyAccount)}>
 								<span>
@@ -371,18 +377,22 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 	const NotificationMenu = () => {
 		return (
 			<>
-				<div className='dropdown-notification-title justify-content-md-center'>
+				<Box className='dropdown-notification-title justify-content-md-center'>
 					<span
 						onClick={() => onClickCloseNotification(ESidebarName.Notification)}
 						className='remove-icon d-inline-block d-md-none'
 					></span>
 					<h5>Notification</h5>
 					<span></span>
-				</div>
+				</Box>
 				<ul className='dropdown-notification-items'>
 					<li>
-						<p className='notification-item-title'>New Noti</p>
-						<p className='notification-item-time'>12312313</p>
+						<Typography variant='body1' className='notification-item-title'>
+							New Noti
+						</Typography>
+						<Typography variant='body1' className='notification-item-time'>
+							12312313
+						</Typography>
 					</li>
 				</ul>
 			</>
@@ -392,11 +402,13 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 	return (
 		<>
 			<header>
-				<div className='navbar-header'>
-					<img alt='' style={{ height: '24px' }} src={logo} />
+				<Box className='navbar-header'>
+					<Link to={'/'}>
+						<img alt='' style={{ height: '24px' }} src={logo} />
+					</Link>
 					<MainNav />
 					<TemplateSignIn />
-				</div>
+				</Box>
 			</header>
 
 			<RightSideBar>

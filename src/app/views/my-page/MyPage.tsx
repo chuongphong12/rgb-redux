@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
+import { Box } from '@mui/material';
+import { useContext, useEffect } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { ESidebarName } from '../../core/components/Topbar/TopBar';
+import AuthContext from '../../utils/context/AuthProvider';
 import './MyPage.scss';
 
 interface SideBar {
@@ -10,6 +12,7 @@ interface SideBar {
 }
 
 const MyPage = () => {
+	const { user } = useContext(AuthContext);
 	let __ESIDEBAR: SideBar[] = [
 		{ link: ESidebarName.MyAccount, name: 'My Account', icon: 'rgbi-user' },
 		{ link: ESidebarName.PhotoGallery, name: 'Photo Gallery', icon: 'rgbi-gallery' },
@@ -57,24 +60,26 @@ const MyPage = () => {
 
 	return (
 		<>
-			<div className='my-page'>
-				<div className='sidebar sidebar-expanded'>
-					<div className='card'>
-						<div className='user expand'>
+			<Box className='my-page'>
+				<Box className='sidebar sidebar-expanded'>
+					<Box className='card'>
+						<Box className='user expand'>
 							{isTablet && (
 								<i
 									onClick={() => toggle(false)}
 									className='close-sidebar-icon rgbi rgbi-left-arrow'
 								></i>
 							)}
-							<div className='animate__animated animate__fadeIn dp'>
+							<Box className='animate__animated animate__fadeIn dp'>
 								<p className='user__name'>Hudson Brekker</p>
-								<div className='user__type'>
+								<Box className='user__type'>
 									<p className='email'>bm.hcmc.hudson@gmail.com</p>
-									<div className='type'>Trial</div>
-								</div>
-							</div>
-						</div>
+									<Box className={`${user.trial === 1 ? 'trial' : 'non-trial'} type`}>
+										{user.trial === 1 ? 'Trial' : 'Regular'}
+									</Box>
+								</Box>
+							</Box>
+						</Box>
 
 						<ul className='nav_list'>
 							{__ESIDEBAR.map((menu, index) => {
@@ -101,24 +106,24 @@ const MyPage = () => {
 							})}
 							<hr className='mt-3 mb-3' />
 							<li className='nav_list__item'>
-									<span className='animate__animated animate__fadeIn dp'>
-										<i className='rgbi rgbi-logout'></i> Sign Out
-									</span>
+								<span className='animate__animated animate__fadeIn dp'>
+									<i className='rgbi rgbi-logout'></i> Sign Out
+								</span>
 							</li>
 							<li className='nav_list__item'>
-									<span className='animate__animated animate__fadeIn dp'>
-										<i className='rgbi rgbi-delete'></i> Delete My Account
-									</span>
+								<span className='animate__animated animate__fadeIn dp'>
+									<i className='rgbi rgbi-delete'></i> Delete My Account
+								</span>
 							</li>
 						</ul>
-					</div>
-				</div>
-				<div className='content'>
-					<div className={'container' + (expand ? 'move_right' : undefined)}>
+					</Box>
+				</Box>
+				<Box className='content'>
+					<Box className={'container' + (expand ? 'move_right' : undefined)}>
 						<Outlet />
-					</div>
-				</div>
-			</div>
+					</Box>
+				</Box>
+			</Box>
 		</>
 	);
 };
