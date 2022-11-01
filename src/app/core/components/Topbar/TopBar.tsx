@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Avatar, Badge, Box, IconButton, Menu, Typography } from '@mui/material';
 import { memo, useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import hamburgerIcon from '../../../../assets/images/icons/menu-hamburger-icon.svg';
 import notificationIcon from '../../../../assets/images/icons/notification-icon.svg';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import logo from '../../../../assets/images/logo.png';
 import AuthContext from '../../../utils/context/AuthProvider';
 import { ModeAuthenticateEnum } from '../../enums/app.enum';
@@ -105,8 +105,6 @@ const TopBar = ({ toggleSidebar, closeSidebar }: TopBarProps) => {
 								<Badge badgeContent={10} color='primary'>
 									<NotificationsIcon color='action' />
 								</Badge>
-								{/* <img src={notificationIcon} alt={'icon'} />
-								<span className='notification-unread'>10</span> */}
 							</IconButton>
 							<Menu
 								anchorEl={notificationAnchorEl}

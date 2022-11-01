@@ -6,7 +6,7 @@ const MainNav = () => {
 	return (
 		<>
 			<nav className='nav-menu d-none d-md-flex d-block d-md-none'>
-				<NavLink to={RouterLinkNav.COLOR_COMPARISON}>Color</NavLink>
+				<NavLink to={RouterLinkNav.COLOR_COMPARISON_GUIDELINE}>Color</NavLink>
 				<NavLink to={RouterLinkNav.Product}>Hardware</NavLink>
 				<NavLink to={RouterLinkNav.HELP}>Help</NavLink>
 			</nav>

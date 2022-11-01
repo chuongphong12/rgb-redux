@@ -1,6 +1,6 @@
+import { createTheme, ThemeProvider } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import './App.scss';
-import { createTheme, ThemeProvider } from '@mui/material';
 
 const theme = createTheme({
 	typography: {

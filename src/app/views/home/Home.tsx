@@ -1,4 +1,4 @@
-import Carousel from 'react-slick';
+import Slider from 'react-slick';
 import './Home.scss';
 import Slide1 from './Slide1/Slide1';
 
@@ -9,14 +9,13 @@ const Home = () => {
 		speed: 500,
 		slidesToShow: 1,
 		slidesToScroll: 1,
-		adaptiveHeight: true,
 		useCSS: true,
 		arrows: false,
 	};
 
 	return (
-		<Carousel {...options} className='main-carousel'>
-			<div>
+		<Slider {...options} className='main-carousel'>
+			<div className='h-screen'>
 				<Slide1 />
 			</div>
 			<div>
@@ -25,7 +24,7 @@ const Home = () => {
 			<div>
 				<Slide1 />
 			</div>
-		</Carousel>
+		</Slider>
 	);
 };
 

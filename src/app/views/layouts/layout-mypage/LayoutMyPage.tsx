@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom';
 import Footer from '../../../core/components/Footer/Footer';
 import TopBar, { ESidebarName } from '../../../core/components/Topbar/TopBar';
 
@@ -26,7 +27,9 @@ const LayoutMyPage = (props: any) => {
 				</div>
 
 				<div className='main-content'>
-					<div className='mc-container'>{props.children}</div>
+					<div className='mc-container'>
+						<Outlet />
+					</div>
 				</div>
 
 				<div className='footer'>
