@@ -8,12 +8,10 @@ export class ApiService {
 		this._authRepository = authRepository;
 	}
 
-
 	async login(loginForm: LoginCredentials) {
 		const user = await this._authRepository.login(loginForm);
-		if(user) {
+		if (user) {
 			this._authRepository.setLoginLocalStorage(user.access_token);
 		}
-
 	}
 }
