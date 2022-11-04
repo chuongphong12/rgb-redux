@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { Box, Grid, Typography } from '@mui/material';
 import './GuideLine.scss';
-import { Grid } from '@mui/material';
 
 interface StepCard {
 	id: string;
@@ -38,32 +38,34 @@ const GuideLine = (props: any) => {
 	];
 
 	return (
-		<div className='color-comparison'>
-			<h2 className='cl-dark-blue mb-md-4 mb-3 d-none d-md-block'>Color Comparison</h2>
-			<div className='color-cp-all-step mb-md-4 mb-3'>
-				<div className='right'>
+		<Box className='color-comparison'>
+			<Typography variant='h4' className='cl-dark-blue md:mb-4 mb-3 font-bold'>
+				Color Comparison
+			</Typography>
+			<Box className='color-cp-all-step mb-md-4 mb-3'>
+				<Box className='right'>
 					<span className='step-name'>
 						<i className='bx bx-check'></i> 1 Step
 					</span>
-				</div>
-				<div className='right'>
+				</Box>
+				<Box className='right'>
 					<span className='step-name'>
 						<i className='bx bx-check'></i> 2 Step
 					</span>
-				</div>
-				<div className='right'>
+				</Box>
+				<Box className='right'>
 					<span className='step-name'>
 						<i className='bx bx-check'></i> 3 Step
 					</span>
-				</div>
-				<div className='left'>
+				</Box>
+				<Box className='left'>
 					<span className='step-name'>
 						<i className='bx bx-check'></i> 4 Step
 					</span>
-				</div>
-			</div>
-			<div className='color-cp-content bg-white card card-content'>
-				<div className='guideline color-comparison-layout'>
+				</Box>
+			</Box>
+			<Box className='color-cp-content bg-white card card-content'>
+				<Box className='guideline color-comparison-layout'>
 					<h4 className='color-comparison-title cl-basic-black'>How It works?</h4>
 					<p className='color-comparison-msg'>
 						Our AI system provides simple & easy way to figure out how similar both colors.
@@ -79,24 +81,21 @@ const GuideLine = (props: any) => {
 							);
 						})}
 					</Grid>
-					<div className='btn-start text-center'>
+					<Box className='btn-start text-center'>
 						<button className='btn btn-dark-blue' id='btn'>
 							Let’s Start!
 						</button>
-					</div>
-					<p className='guidance-phrase'>
+					</Box>
+					<Typography variant='body1' className='guidance-phrase'>
 						<span className='text-warn'>Wait!</span>&nbsp;You do not have any hardware? It’s
 						fine!&nbsp;
 						<span className='guidance-msg'>
-							Please visit this{' '}
-							<a className='text-link'>link</a>
-							{' '}
-							and you could proceed to purchase!
+							Please visit this <a className='text-link'>link</a> and you could proceed to purchase!
 						</span>
-					</p>
-				</div>
-			</div>
-		</div>
+					</Typography>
+				</Box>
+			</Box>
+		</Box>
 	);
 };
 

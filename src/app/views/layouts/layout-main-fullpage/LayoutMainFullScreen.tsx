@@ -1,7 +1,8 @@
+import { Outlet } from 'react-router-dom';
 import Footer from '../../../core/components/Footer/Footer';
 import TopBar, { ESidebarName } from '../../../core/components/Topbar/TopBar';
 
-const LayoutMainFullScreen = (props: any) => {
+const LayoutMainFullScreen = () => {
 	const openSidebar = (sidebarName: ESidebarName): void => {
 		Object.values(ESidebarName).forEach((elSidebarName) => {
 			if (elSidebarName !== sidebarName) {
@@ -26,7 +27,9 @@ const LayoutMainFullScreen = (props: any) => {
 				</div>
 				<div className='main-content'>
 					{/* <MainNav /> */}
-					<div className='mc-container'>{props.children}</div>
+					<div className='mc-container'>
+						<Outlet />
+					</div>
 				</div>
 				<div className='footer'>
 					<div className='ft-container'>

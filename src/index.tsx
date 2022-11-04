@@ -2,12 +2,7 @@ import { CircularProgress } from '@mui/material';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import {
-	createBrowserRouter,
-	createRoutesFromElements,
-	Route,
-	RouterProvider
-} from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import App from './App';
 import { store } from './app/store';
 import { AuthProvider } from './app/utils/context/AuthProvider';
@@ -23,41 +18,71 @@ import reportWebVitals from './reportWebVitals';
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
-const router = createBrowserRouter(
-	createRoutesFromElements(
-		<Route path='/' element={<App />}>
-			<Route
-				index
-				element={
-					<LayoutMainFullScreen>
-						<Home />
-					</LayoutMainFullScreen>
-				}
-			/>
-			<Route path='color-comparison' element={<LayoutMyPage />}
-			>
-				<Route path='guideline' element={<GuideLine />} />
-			</Route>
-			<Route path='my-page' element={<LayoutMyPage />}>
-				<Route
-					path='my-account'
-					element={
-						<MyPage>
-							<MyAccount />
-						</MyPage>
-					}
-				/>
-			</Route>
-			<Route path='*' element={<NotFound />} />
-		</Route>
-	)
-);
+const router = createBrowserRouter([
+	{
+		element: <App />,
+		children: [
+			{
+				path: '/',
+				element: <Navigate to={'/home'} />,
+			},
+			{
+				path: 'home',
+				element: <LayoutMainFullScreen />,
+				children: [
+					{
+						index: true,
+						element: <Home />,
+					},
+				],
+			},
+			{
+				path: 'color-comparison',
+				element: <LayoutMyPage />,
+				children: [
+					{
+						index: true,
+						element: <Navigate to={'guideline'} />,
+					},
+					{
+						path: 'guideline',
+						element: <GuideLine />,
+					},
+				],
+			},
+			{
+				path: 'my-page',
+				element: <LayoutMyPage />,
+				children: [
+					{
+						index: true,
+						element: <Navigate to={'my-account'} />,
+					},
+					{
+						path: '',
+						element: <MyPage />,
+						children: [
+							{
+								path: 'my-account',
+								element: <MyAccount />,
+							},
+						],
+					},
+				],
+			},
+			{
+				path: '*',
+				element: <NotFound />,
+			},
+		],
+	},
+]);
 
 root.render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<AuthProvider>
-				<RouterProvider router={router} fallbackElement={<CircularProgress />} />
+				<RouterProvider router={router} fallbackElement={<CircularProgrconeess />} />
 			</AuthProvider>
 		</Provider>
 	</React.StrictMode>

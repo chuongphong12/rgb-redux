@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { useContext, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { ESidebarName } from '../../core/components/Topbar/TopBar';
 import AuthContext from '../../utils/context/AuthProvider';
 import './MyPage.scss';
@@ -11,7 +11,7 @@ interface SideBar {
 	icon: string;
 }
 
-const MyPage = ({ children }: any) => {
+const MyPage = () => {
 	const { user } = useContext(AuthContext);
 	let __ESIDEBAR: SideBar[] = [
 		{ link: ESidebarName.MyAccount, name: 'My Account', icon: 'rgbi-user' },
@@ -119,7 +119,9 @@ const MyPage = ({ children }: any) => {
 					</Box>
 				</Box>
 				<Box className='content'>
-					<Box className={'container' + (expand ? 'move_right' : undefined)}>{children}</Box>
+					<Box className={'container' + (expand ? 'move_right' : undefined)}>
+						<Outlet />
+					</Box>
 				</Box>
 			</Box>
 		</>
